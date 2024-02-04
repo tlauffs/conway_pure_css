@@ -1,0 +1,89 @@
+:root {
+  /* initial values : 1 = alive cell; 0 = dead cell */
+  /* feel free to change these */
+  --cell-0-value-step-0: 0;
+  --cell-1-value-step-0: 0;
+  --cell-2-value-step-0: 0;
+  --cell-3-value-step-0: 0;
+  --cell-4-value-step-0: 1;
+  --cell-5-value-step-0: 1;
+  --cell-6-value-step-0: 1;
+  --cell-7-value-step-0: 0;
+  --cell-8-value-step-0: 0;
+  --cell-9-value-step-0: 0;
+  --cell-10-value-step-0: 0;
+  --cell-11-value-step-0: 0;
+  --cell-12-value-step-0: 0;
+  --cell-13-value-step-0: 0;
+  --cell-14-value-step-0: 0;
+  --cell-15-value-step-0: 0;
+
+  @for $i from 1 through 10 {
+    @for $j from 0 through 15 {
+      /* calc alive neighbors of cell */
+      --cell-#{$j}-alive-neighbors-step-#{$i}: calc(
+        var(--cell-#{mod($j + 1, 16)}-value-step-#{$i - 1}) +
+          var(--cell-#{mod($j + 3, 16)}-value-step-#{$i - 1}) +
+          var(--cell-#{mod($j + 4, 16)}-value-step-#{$i - 1}) +
+          var(--cell-#{mod($j + 5, 16)}-value-step-#{$i - 1}) +
+          var(--cell-#{mod($j - 1, 16)}-value-step-#{$i - 1}) +
+          var(--cell-#{mod($j - 3, 16)}-value-step-#{$i - 1}) +
+          var(--cell-#{mod($j - 4, 16)}-value-step-#{$i - 1}) +
+          var(--cell-#{mod($j - 5, 16)}-value-step-#{$i - 1})
+      );
+
+      /* game logic */
+      --fewer-then-2-cell-#{$j}-step-#{$i}: max(
+        var(--cell-#{$j}-alive-neighbors-step-#{$i}) +
+          var(--cell-#{$j}-value-step-#{$i - 1}) -
+          2,
+        0
+      );
+      --more-then-3-cell-#{$j}-step-#{$i}: max(
+        4 - var(--cell-#{$j}-alive-neighbors-step-#{$i}),
+        0
+      );
+
+      /* calc final value */
+      --cell-#{$j}-value-step-#{$i}: min(
+        calc(
+          var(--fewer-then-2-cell-#{$j}-step-#{$i}) *
+            var(--more-then-3-cell-#{$j}-step-#{$i})
+        ),
+        1
+      );
+    }
+  }
+}
+
+@for $j from 0 through 15 {
+  @keyframes cell-#{$j} {
+    @for $i from 0 through 10 {
+      #{$i * 10%} {
+        filter: contrast(var(--cell-#{$j}-value-step-#{$i}));
+      }
+    }
+  }
+}
+@for $j from 0 through 15 {
+  .cell:nth-child(#{$j + 1}) {
+    animation: cell-#{$j} 10s forwards;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 0.3rem;
+}
+
+.cell {
+  width: 4rem;
+  height: 4rem;
+  background-color: blue;
+}

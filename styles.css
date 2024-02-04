@@ -1,48 +1,5447 @@
 :root {
-  --cell-1-value: 0;
-  --cell-2-value: 0;
-  --cell-3-value: 1;
-  --cell-4-value: 0;
-
-  /* calc alive neighbors of cell*/
-  --cell-1-alive-neighbors: calc(var(--cell-2-value) + var(--cell-3-value));
-  --cell-1-alive-neighbors: 3;
-
-  /* any live cell with fewer then 2 neighbors dies (get 0), otherwise we get some positive number*/
-  /* --fewer-then-2: max(var(--cell-1-alive-neighbors) - 1, 0); */
-  /*
-  PROBLEM: returns 1 if 2 neighbors alive in  dead cell -> turns alive
-  SOLUTION: add
-  */
-  --fewer-then-2: max(
-    var(--cell-1-alive-neighbors) + var(--cell-1-value) - 2,
+  /* initial values : 1 = alive cell; 0 = dead cell */
+  /* feel free to change these */
+  --cell-0-value-step-0: 0;
+  --cell-1-value-step-0: 0;
+  --cell-2-value-step-0: 0;
+  --cell-3-value-step-0: 0;
+  --cell-4-value-step-0: 1;
+  --cell-5-value-step-0: 1;
+  --cell-6-value-step-0: 1;
+  --cell-7-value-step-0: 0;
+  --cell-8-value-step-0: 0;
+  --cell-9-value-step-0: 0;
+  --cell-10-value-step-0: 0;
+  --cell-11-value-step-0: 0;
+  --cell-12-value-step-0: 0;
+  --cell-13-value-step-0: 0;
+  --cell-14-value-step-0: 0;
+  --cell-15-value-step-0: 0;
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-1: calc(
+    var(--cell-1-value-step-0) +
+      var(--cell-3-value-step-0) +
+      var(--cell-4-value-step-0) +
+      var(--cell-5-value-step-0) +
+      var(--cell-15-value-step-0) +
+      var(--cell-13-value-step-0) +
+      var(--cell-12-value-step-0) +
+      var(--cell-11-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-1: max(
+    var(--cell-0-alive-neighbors-step-1) +
+      var(--cell-0-value-step-0) -
+      2,
     0
   );
-  /* multiply with fewer then 2 at end */
-
-  /* Any cell with more than three neighbors dies (get 0), otherwise we get some positive number */
-  --more-then-3: max(4 - var(--cell-1-alive-neighbors), 0);
-  /* multiply with more then 3 at end */
-
-
-  /* calc final value cell 1 (is always 1 or 0) after first step*/
-  --cell-1-value-step-1: calc(min(var(--fewer-then-2) * var(--more-then-3), 1));
+  --more-then-3-cell-0-step-1: max(
+    4 - var(--cell-0-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-1) *
+        var(--more-then-3-cell-0-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-1: calc(
+    var(--cell-2-value-step-0) +
+      var(--cell-4-value-step-0) +
+      var(--cell-5-value-step-0) +
+      var(--cell-6-value-step-0) +
+      var(--cell-0-value-step-0) +
+      var(--cell-14-value-step-0) +
+      var(--cell-13-value-step-0) +
+      var(--cell-12-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-1: max(
+    var(--cell-1-alive-neighbors-step-1) +
+      var(--cell-1-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-1: max(
+    4 - var(--cell-1-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-1) *
+        var(--more-then-3-cell-1-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-1: calc(
+    var(--cell-3-value-step-0) +
+      var(--cell-5-value-step-0) +
+      var(--cell-6-value-step-0) +
+      var(--cell-7-value-step-0) +
+      var(--cell-1-value-step-0) +
+      var(--cell-15-value-step-0) +
+      var(--cell-14-value-step-0) +
+      var(--cell-13-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-1: max(
+    var(--cell-2-alive-neighbors-step-1) +
+      var(--cell-2-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-1: max(
+    4 - var(--cell-2-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-1) *
+        var(--more-then-3-cell-2-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-1: calc(
+    var(--cell-4-value-step-0) +
+      var(--cell-6-value-step-0) +
+      var(--cell-7-value-step-0) +
+      var(--cell-8-value-step-0) +
+      var(--cell-2-value-step-0) +
+      var(--cell-0-value-step-0) +
+      var(--cell-15-value-step-0) +
+      var(--cell-14-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-1: max(
+    var(--cell-3-alive-neighbors-step-1) +
+      var(--cell-3-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-1: max(
+    4 - var(--cell-3-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-1) *
+        var(--more-then-3-cell-3-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-1: calc(
+    var(--cell-5-value-step-0) +
+      var(--cell-7-value-step-0) +
+      var(--cell-8-value-step-0) +
+      var(--cell-9-value-step-0) +
+      var(--cell-3-value-step-0) +
+      var(--cell-1-value-step-0) +
+      var(--cell-0-value-step-0) +
+      var(--cell-15-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-1: max(
+    var(--cell-4-alive-neighbors-step-1) +
+      var(--cell-4-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-1: max(
+    4 - var(--cell-4-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-1) *
+        var(--more-then-3-cell-4-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-1: calc(
+    var(--cell-6-value-step-0) +
+      var(--cell-8-value-step-0) +
+      var(--cell-9-value-step-0) +
+      var(--cell-10-value-step-0) +
+      var(--cell-4-value-step-0) +
+      var(--cell-2-value-step-0) +
+      var(--cell-1-value-step-0) +
+      var(--cell-0-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-1: max(
+    var(--cell-5-alive-neighbors-step-1) +
+      var(--cell-5-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-1: max(
+    4 - var(--cell-5-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-1) *
+        var(--more-then-3-cell-5-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-1: calc(
+    var(--cell-7-value-step-0) +
+      var(--cell-9-value-step-0) +
+      var(--cell-10-value-step-0) +
+      var(--cell-11-value-step-0) +
+      var(--cell-5-value-step-0) +
+      var(--cell-3-value-step-0) +
+      var(--cell-2-value-step-0) +
+      var(--cell-1-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-1: max(
+    var(--cell-6-alive-neighbors-step-1) +
+      var(--cell-6-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-1: max(
+    4 - var(--cell-6-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-1) *
+        var(--more-then-3-cell-6-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-1: calc(
+    var(--cell-8-value-step-0) +
+      var(--cell-10-value-step-0) +
+      var(--cell-11-value-step-0) +
+      var(--cell-12-value-step-0) +
+      var(--cell-6-value-step-0) +
+      var(--cell-4-value-step-0) +
+      var(--cell-3-value-step-0) +
+      var(--cell-2-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-1: max(
+    var(--cell-7-alive-neighbors-step-1) +
+      var(--cell-7-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-1: max(
+    4 - var(--cell-7-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-1) *
+        var(--more-then-3-cell-7-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-1: calc(
+    var(--cell-9-value-step-0) +
+      var(--cell-11-value-step-0) +
+      var(--cell-12-value-step-0) +
+      var(--cell-13-value-step-0) +
+      var(--cell-7-value-step-0) +
+      var(--cell-5-value-step-0) +
+      var(--cell-4-value-step-0) +
+      var(--cell-3-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-1: max(
+    var(--cell-8-alive-neighbors-step-1) +
+      var(--cell-8-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-1: max(
+    4 - var(--cell-8-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-1) *
+        var(--more-then-3-cell-8-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-1: calc(
+    var(--cell-10-value-step-0) +
+      var(--cell-12-value-step-0) +
+      var(--cell-13-value-step-0) +
+      var(--cell-14-value-step-0) +
+      var(--cell-8-value-step-0) +
+      var(--cell-6-value-step-0) +
+      var(--cell-5-value-step-0) +
+      var(--cell-4-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-1: max(
+    var(--cell-9-alive-neighbors-step-1) +
+      var(--cell-9-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-1: max(
+    4 - var(--cell-9-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-1) *
+        var(--more-then-3-cell-9-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-1: calc(
+    var(--cell-11-value-step-0) +
+      var(--cell-13-value-step-0) +
+      var(--cell-14-value-step-0) +
+      var(--cell-15-value-step-0) +
+      var(--cell-9-value-step-0) +
+      var(--cell-7-value-step-0) +
+      var(--cell-6-value-step-0) +
+      var(--cell-5-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-1: max(
+    var(--cell-10-alive-neighbors-step-1) +
+      var(--cell-10-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-1: max(
+    4 - var(--cell-10-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-1) *
+        var(--more-then-3-cell-10-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-1: calc(
+    var(--cell-12-value-step-0) +
+      var(--cell-14-value-step-0) +
+      var(--cell-15-value-step-0) +
+      var(--cell-0-value-step-0) +
+      var(--cell-10-value-step-0) +
+      var(--cell-8-value-step-0) +
+      var(--cell-7-value-step-0) +
+      var(--cell-6-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-1: max(
+    var(--cell-11-alive-neighbors-step-1) +
+      var(--cell-11-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-1: max(
+    4 - var(--cell-11-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-1) *
+        var(--more-then-3-cell-11-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-1: calc(
+    var(--cell-13-value-step-0) +
+      var(--cell-15-value-step-0) +
+      var(--cell-0-value-step-0) +
+      var(--cell-1-value-step-0) +
+      var(--cell-11-value-step-0) +
+      var(--cell-9-value-step-0) +
+      var(--cell-8-value-step-0) +
+      var(--cell-7-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-1: max(
+    var(--cell-12-alive-neighbors-step-1) +
+      var(--cell-12-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-1: max(
+    4 - var(--cell-12-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-1) *
+        var(--more-then-3-cell-12-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-1: calc(
+    var(--cell-14-value-step-0) +
+      var(--cell-0-value-step-0) +
+      var(--cell-1-value-step-0) +
+      var(--cell-2-value-step-0) +
+      var(--cell-12-value-step-0) +
+      var(--cell-10-value-step-0) +
+      var(--cell-9-value-step-0) +
+      var(--cell-8-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-1: max(
+    var(--cell-13-alive-neighbors-step-1) +
+      var(--cell-13-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-1: max(
+    4 - var(--cell-13-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-1) *
+        var(--more-then-3-cell-13-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-1: calc(
+    var(--cell-15-value-step-0) +
+      var(--cell-1-value-step-0) +
+      var(--cell-2-value-step-0) +
+      var(--cell-3-value-step-0) +
+      var(--cell-13-value-step-0) +
+      var(--cell-11-value-step-0) +
+      var(--cell-10-value-step-0) +
+      var(--cell-9-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-1: max(
+    var(--cell-14-alive-neighbors-step-1) +
+      var(--cell-14-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-1: max(
+    4 - var(--cell-14-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-1) *
+        var(--more-then-3-cell-14-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-1: calc(
+    var(--cell-0-value-step-0) +
+      var(--cell-2-value-step-0) +
+      var(--cell-3-value-step-0) +
+      var(--cell-4-value-step-0) +
+      var(--cell-14-value-step-0) +
+      var(--cell-12-value-step-0) +
+      var(--cell-11-value-step-0) +
+      var(--cell-10-value-step-0)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-1: max(
+    var(--cell-15-alive-neighbors-step-1) +
+      var(--cell-15-value-step-0) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-1: max(
+    4 - var(--cell-15-alive-neighbors-step-1),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-1: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-1) *
+        var(--more-then-3-cell-15-step-1)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-2: calc(
+    var(--cell-1-value-step-1) +
+      var(--cell-3-value-step-1) +
+      var(--cell-4-value-step-1) +
+      var(--cell-5-value-step-1) +
+      var(--cell-15-value-step-1) +
+      var(--cell-13-value-step-1) +
+      var(--cell-12-value-step-1) +
+      var(--cell-11-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-2: max(
+    var(--cell-0-alive-neighbors-step-2) +
+      var(--cell-0-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-0-step-2: max(
+    4 - var(--cell-0-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-2) *
+        var(--more-then-3-cell-0-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-2: calc(
+    var(--cell-2-value-step-1) +
+      var(--cell-4-value-step-1) +
+      var(--cell-5-value-step-1) +
+      var(--cell-6-value-step-1) +
+      var(--cell-0-value-step-1) +
+      var(--cell-14-value-step-1) +
+      var(--cell-13-value-step-1) +
+      var(--cell-12-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-2: max(
+    var(--cell-1-alive-neighbors-step-2) +
+      var(--cell-1-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-2: max(
+    4 - var(--cell-1-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-2) *
+        var(--more-then-3-cell-1-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-2: calc(
+    var(--cell-3-value-step-1) +
+      var(--cell-5-value-step-1) +
+      var(--cell-6-value-step-1) +
+      var(--cell-7-value-step-1) +
+      var(--cell-1-value-step-1) +
+      var(--cell-15-value-step-1) +
+      var(--cell-14-value-step-1) +
+      var(--cell-13-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-2: max(
+    var(--cell-2-alive-neighbors-step-2) +
+      var(--cell-2-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-2: max(
+    4 - var(--cell-2-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-2) *
+        var(--more-then-3-cell-2-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-2: calc(
+    var(--cell-4-value-step-1) +
+      var(--cell-6-value-step-1) +
+      var(--cell-7-value-step-1) +
+      var(--cell-8-value-step-1) +
+      var(--cell-2-value-step-1) +
+      var(--cell-0-value-step-1) +
+      var(--cell-15-value-step-1) +
+      var(--cell-14-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-2: max(
+    var(--cell-3-alive-neighbors-step-2) +
+      var(--cell-3-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-2: max(
+    4 - var(--cell-3-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-2) *
+        var(--more-then-3-cell-3-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-2: calc(
+    var(--cell-5-value-step-1) +
+      var(--cell-7-value-step-1) +
+      var(--cell-8-value-step-1) +
+      var(--cell-9-value-step-1) +
+      var(--cell-3-value-step-1) +
+      var(--cell-1-value-step-1) +
+      var(--cell-0-value-step-1) +
+      var(--cell-15-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-2: max(
+    var(--cell-4-alive-neighbors-step-2) +
+      var(--cell-4-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-2: max(
+    4 - var(--cell-4-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-2) *
+        var(--more-then-3-cell-4-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-2: calc(
+    var(--cell-6-value-step-1) +
+      var(--cell-8-value-step-1) +
+      var(--cell-9-value-step-1) +
+      var(--cell-10-value-step-1) +
+      var(--cell-4-value-step-1) +
+      var(--cell-2-value-step-1) +
+      var(--cell-1-value-step-1) +
+      var(--cell-0-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-2: max(
+    var(--cell-5-alive-neighbors-step-2) +
+      var(--cell-5-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-2: max(
+    4 - var(--cell-5-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-2) *
+        var(--more-then-3-cell-5-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-2: calc(
+    var(--cell-7-value-step-1) +
+      var(--cell-9-value-step-1) +
+      var(--cell-10-value-step-1) +
+      var(--cell-11-value-step-1) +
+      var(--cell-5-value-step-1) +
+      var(--cell-3-value-step-1) +
+      var(--cell-2-value-step-1) +
+      var(--cell-1-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-2: max(
+    var(--cell-6-alive-neighbors-step-2) +
+      var(--cell-6-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-2: max(
+    4 - var(--cell-6-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-2) *
+        var(--more-then-3-cell-6-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-2: calc(
+    var(--cell-8-value-step-1) +
+      var(--cell-10-value-step-1) +
+      var(--cell-11-value-step-1) +
+      var(--cell-12-value-step-1) +
+      var(--cell-6-value-step-1) +
+      var(--cell-4-value-step-1) +
+      var(--cell-3-value-step-1) +
+      var(--cell-2-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-2: max(
+    var(--cell-7-alive-neighbors-step-2) +
+      var(--cell-7-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-2: max(
+    4 - var(--cell-7-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-2) *
+        var(--more-then-3-cell-7-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-2: calc(
+    var(--cell-9-value-step-1) +
+      var(--cell-11-value-step-1) +
+      var(--cell-12-value-step-1) +
+      var(--cell-13-value-step-1) +
+      var(--cell-7-value-step-1) +
+      var(--cell-5-value-step-1) +
+      var(--cell-4-value-step-1) +
+      var(--cell-3-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-2: max(
+    var(--cell-8-alive-neighbors-step-2) +
+      var(--cell-8-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-2: max(
+    4 - var(--cell-8-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-2) *
+        var(--more-then-3-cell-8-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-2: calc(
+    var(--cell-10-value-step-1) +
+      var(--cell-12-value-step-1) +
+      var(--cell-13-value-step-1) +
+      var(--cell-14-value-step-1) +
+      var(--cell-8-value-step-1) +
+      var(--cell-6-value-step-1) +
+      var(--cell-5-value-step-1) +
+      var(--cell-4-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-2: max(
+    var(--cell-9-alive-neighbors-step-2) +
+      var(--cell-9-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-2: max(
+    4 - var(--cell-9-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-2) *
+        var(--more-then-3-cell-9-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-2: calc(
+    var(--cell-11-value-step-1) +
+      var(--cell-13-value-step-1) +
+      var(--cell-14-value-step-1) +
+      var(--cell-15-value-step-1) +
+      var(--cell-9-value-step-1) +
+      var(--cell-7-value-step-1) +
+      var(--cell-6-value-step-1) +
+      var(--cell-5-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-2: max(
+    var(--cell-10-alive-neighbors-step-2) +
+      var(--cell-10-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-2: max(
+    4 - var(--cell-10-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-2) *
+        var(--more-then-3-cell-10-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-2: calc(
+    var(--cell-12-value-step-1) +
+      var(--cell-14-value-step-1) +
+      var(--cell-15-value-step-1) +
+      var(--cell-0-value-step-1) +
+      var(--cell-10-value-step-1) +
+      var(--cell-8-value-step-1) +
+      var(--cell-7-value-step-1) +
+      var(--cell-6-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-2: max(
+    var(--cell-11-alive-neighbors-step-2) +
+      var(--cell-11-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-2: max(
+    4 - var(--cell-11-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-2) *
+        var(--more-then-3-cell-11-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-2: calc(
+    var(--cell-13-value-step-1) +
+      var(--cell-15-value-step-1) +
+      var(--cell-0-value-step-1) +
+      var(--cell-1-value-step-1) +
+      var(--cell-11-value-step-1) +
+      var(--cell-9-value-step-1) +
+      var(--cell-8-value-step-1) +
+      var(--cell-7-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-2: max(
+    var(--cell-12-alive-neighbors-step-2) +
+      var(--cell-12-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-2: max(
+    4 - var(--cell-12-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-2) *
+        var(--more-then-3-cell-12-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-2: calc(
+    var(--cell-14-value-step-1) +
+      var(--cell-0-value-step-1) +
+      var(--cell-1-value-step-1) +
+      var(--cell-2-value-step-1) +
+      var(--cell-12-value-step-1) +
+      var(--cell-10-value-step-1) +
+      var(--cell-9-value-step-1) +
+      var(--cell-8-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-2: max(
+    var(--cell-13-alive-neighbors-step-2) +
+      var(--cell-13-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-2: max(
+    4 - var(--cell-13-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-2) *
+        var(--more-then-3-cell-13-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-2: calc(
+    var(--cell-15-value-step-1) +
+      var(--cell-1-value-step-1) +
+      var(--cell-2-value-step-1) +
+      var(--cell-3-value-step-1) +
+      var(--cell-13-value-step-1) +
+      var(--cell-11-value-step-1) +
+      var(--cell-10-value-step-1) +
+      var(--cell-9-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-2: max(
+    var(--cell-14-alive-neighbors-step-2) +
+      var(--cell-14-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-2: max(
+    4 - var(--cell-14-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-2) *
+        var(--more-then-3-cell-14-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-2: calc(
+    var(--cell-0-value-step-1) +
+      var(--cell-2-value-step-1) +
+      var(--cell-3-value-step-1) +
+      var(--cell-4-value-step-1) +
+      var(--cell-14-value-step-1) +
+      var(--cell-12-value-step-1) +
+      var(--cell-11-value-step-1) +
+      var(--cell-10-value-step-1)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-2: max(
+    var(--cell-15-alive-neighbors-step-2) +
+      var(--cell-15-value-step-1) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-2: max(
+    4 - var(--cell-15-alive-neighbors-step-2),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-2: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-2) *
+        var(--more-then-3-cell-15-step-2)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-3: calc(
+    var(--cell-1-value-step-2) +
+      var(--cell-3-value-step-2) +
+      var(--cell-4-value-step-2) +
+      var(--cell-5-value-step-2) +
+      var(--cell-15-value-step-2) +
+      var(--cell-13-value-step-2) +
+      var(--cell-12-value-step-2) +
+      var(--cell-11-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-3: max(
+    var(--cell-0-alive-neighbors-step-3) +
+      var(--cell-0-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-0-step-3: max(
+    4 - var(--cell-0-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-3) *
+        var(--more-then-3-cell-0-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-3: calc(
+    var(--cell-2-value-step-2) +
+      var(--cell-4-value-step-2) +
+      var(--cell-5-value-step-2) +
+      var(--cell-6-value-step-2) +
+      var(--cell-0-value-step-2) +
+      var(--cell-14-value-step-2) +
+      var(--cell-13-value-step-2) +
+      var(--cell-12-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-3: max(
+    var(--cell-1-alive-neighbors-step-3) +
+      var(--cell-1-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-3: max(
+    4 - var(--cell-1-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-3) *
+        var(--more-then-3-cell-1-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-3: calc(
+    var(--cell-3-value-step-2) +
+      var(--cell-5-value-step-2) +
+      var(--cell-6-value-step-2) +
+      var(--cell-7-value-step-2) +
+      var(--cell-1-value-step-2) +
+      var(--cell-15-value-step-2) +
+      var(--cell-14-value-step-2) +
+      var(--cell-13-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-3: max(
+    var(--cell-2-alive-neighbors-step-3) +
+      var(--cell-2-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-3: max(
+    4 - var(--cell-2-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-3) *
+        var(--more-then-3-cell-2-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-3: calc(
+    var(--cell-4-value-step-2) +
+      var(--cell-6-value-step-2) +
+      var(--cell-7-value-step-2) +
+      var(--cell-8-value-step-2) +
+      var(--cell-2-value-step-2) +
+      var(--cell-0-value-step-2) +
+      var(--cell-15-value-step-2) +
+      var(--cell-14-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-3: max(
+    var(--cell-3-alive-neighbors-step-3) +
+      var(--cell-3-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-3: max(
+    4 - var(--cell-3-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-3) *
+        var(--more-then-3-cell-3-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-3: calc(
+    var(--cell-5-value-step-2) +
+      var(--cell-7-value-step-2) +
+      var(--cell-8-value-step-2) +
+      var(--cell-9-value-step-2) +
+      var(--cell-3-value-step-2) +
+      var(--cell-1-value-step-2) +
+      var(--cell-0-value-step-2) +
+      var(--cell-15-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-3: max(
+    var(--cell-4-alive-neighbors-step-3) +
+      var(--cell-4-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-3: max(
+    4 - var(--cell-4-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-3) *
+        var(--more-then-3-cell-4-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-3: calc(
+    var(--cell-6-value-step-2) +
+      var(--cell-8-value-step-2) +
+      var(--cell-9-value-step-2) +
+      var(--cell-10-value-step-2) +
+      var(--cell-4-value-step-2) +
+      var(--cell-2-value-step-2) +
+      var(--cell-1-value-step-2) +
+      var(--cell-0-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-3: max(
+    var(--cell-5-alive-neighbors-step-3) +
+      var(--cell-5-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-3: max(
+    4 - var(--cell-5-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-3) *
+        var(--more-then-3-cell-5-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-3: calc(
+    var(--cell-7-value-step-2) +
+      var(--cell-9-value-step-2) +
+      var(--cell-10-value-step-2) +
+      var(--cell-11-value-step-2) +
+      var(--cell-5-value-step-2) +
+      var(--cell-3-value-step-2) +
+      var(--cell-2-value-step-2) +
+      var(--cell-1-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-3: max(
+    var(--cell-6-alive-neighbors-step-3) +
+      var(--cell-6-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-3: max(
+    4 - var(--cell-6-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-3) *
+        var(--more-then-3-cell-6-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-3: calc(
+    var(--cell-8-value-step-2) +
+      var(--cell-10-value-step-2) +
+      var(--cell-11-value-step-2) +
+      var(--cell-12-value-step-2) +
+      var(--cell-6-value-step-2) +
+      var(--cell-4-value-step-2) +
+      var(--cell-3-value-step-2) +
+      var(--cell-2-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-3: max(
+    var(--cell-7-alive-neighbors-step-3) +
+      var(--cell-7-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-3: max(
+    4 - var(--cell-7-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-3) *
+        var(--more-then-3-cell-7-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-3: calc(
+    var(--cell-9-value-step-2) +
+      var(--cell-11-value-step-2) +
+      var(--cell-12-value-step-2) +
+      var(--cell-13-value-step-2) +
+      var(--cell-7-value-step-2) +
+      var(--cell-5-value-step-2) +
+      var(--cell-4-value-step-2) +
+      var(--cell-3-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-3: max(
+    var(--cell-8-alive-neighbors-step-3) +
+      var(--cell-8-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-3: max(
+    4 - var(--cell-8-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-3) *
+        var(--more-then-3-cell-8-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-3: calc(
+    var(--cell-10-value-step-2) +
+      var(--cell-12-value-step-2) +
+      var(--cell-13-value-step-2) +
+      var(--cell-14-value-step-2) +
+      var(--cell-8-value-step-2) +
+      var(--cell-6-value-step-2) +
+      var(--cell-5-value-step-2) +
+      var(--cell-4-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-3: max(
+    var(--cell-9-alive-neighbors-step-3) +
+      var(--cell-9-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-3: max(
+    4 - var(--cell-9-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-3) *
+        var(--more-then-3-cell-9-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-3: calc(
+    var(--cell-11-value-step-2) +
+      var(--cell-13-value-step-2) +
+      var(--cell-14-value-step-2) +
+      var(--cell-15-value-step-2) +
+      var(--cell-9-value-step-2) +
+      var(--cell-7-value-step-2) +
+      var(--cell-6-value-step-2) +
+      var(--cell-5-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-3: max(
+    var(--cell-10-alive-neighbors-step-3) +
+      var(--cell-10-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-3: max(
+    4 - var(--cell-10-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-3) *
+        var(--more-then-3-cell-10-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-3: calc(
+    var(--cell-12-value-step-2) +
+      var(--cell-14-value-step-2) +
+      var(--cell-15-value-step-2) +
+      var(--cell-0-value-step-2) +
+      var(--cell-10-value-step-2) +
+      var(--cell-8-value-step-2) +
+      var(--cell-7-value-step-2) +
+      var(--cell-6-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-3: max(
+    var(--cell-11-alive-neighbors-step-3) +
+      var(--cell-11-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-3: max(
+    4 - var(--cell-11-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-3) *
+        var(--more-then-3-cell-11-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-3: calc(
+    var(--cell-13-value-step-2) +
+      var(--cell-15-value-step-2) +
+      var(--cell-0-value-step-2) +
+      var(--cell-1-value-step-2) +
+      var(--cell-11-value-step-2) +
+      var(--cell-9-value-step-2) +
+      var(--cell-8-value-step-2) +
+      var(--cell-7-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-3: max(
+    var(--cell-12-alive-neighbors-step-3) +
+      var(--cell-12-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-3: max(
+    4 - var(--cell-12-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-3) *
+        var(--more-then-3-cell-12-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-3: calc(
+    var(--cell-14-value-step-2) +
+      var(--cell-0-value-step-2) +
+      var(--cell-1-value-step-2) +
+      var(--cell-2-value-step-2) +
+      var(--cell-12-value-step-2) +
+      var(--cell-10-value-step-2) +
+      var(--cell-9-value-step-2) +
+      var(--cell-8-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-3: max(
+    var(--cell-13-alive-neighbors-step-3) +
+      var(--cell-13-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-3: max(
+    4 - var(--cell-13-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-3) *
+        var(--more-then-3-cell-13-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-3: calc(
+    var(--cell-15-value-step-2) +
+      var(--cell-1-value-step-2) +
+      var(--cell-2-value-step-2) +
+      var(--cell-3-value-step-2) +
+      var(--cell-13-value-step-2) +
+      var(--cell-11-value-step-2) +
+      var(--cell-10-value-step-2) +
+      var(--cell-9-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-3: max(
+    var(--cell-14-alive-neighbors-step-3) +
+      var(--cell-14-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-3: max(
+    4 - var(--cell-14-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-3) *
+        var(--more-then-3-cell-14-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-3: calc(
+    var(--cell-0-value-step-2) +
+      var(--cell-2-value-step-2) +
+      var(--cell-3-value-step-2) +
+      var(--cell-4-value-step-2) +
+      var(--cell-14-value-step-2) +
+      var(--cell-12-value-step-2) +
+      var(--cell-11-value-step-2) +
+      var(--cell-10-value-step-2)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-3: max(
+    var(--cell-15-alive-neighbors-step-3) +
+      var(--cell-15-value-step-2) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-3: max(
+    4 - var(--cell-15-alive-neighbors-step-3),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-3: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-3) *
+        var(--more-then-3-cell-15-step-3)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-4: calc(
+    var(--cell-1-value-step-3) +
+      var(--cell-3-value-step-3) +
+      var(--cell-4-value-step-3) +
+      var(--cell-5-value-step-3) +
+      var(--cell-15-value-step-3) +
+      var(--cell-13-value-step-3) +
+      var(--cell-12-value-step-3) +
+      var(--cell-11-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-4: max(
+    var(--cell-0-alive-neighbors-step-4) +
+      var(--cell-0-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-0-step-4: max(
+    4 - var(--cell-0-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-4) *
+        var(--more-then-3-cell-0-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-4: calc(
+    var(--cell-2-value-step-3) +
+      var(--cell-4-value-step-3) +
+      var(--cell-5-value-step-3) +
+      var(--cell-6-value-step-3) +
+      var(--cell-0-value-step-3) +
+      var(--cell-14-value-step-3) +
+      var(--cell-13-value-step-3) +
+      var(--cell-12-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-4: max(
+    var(--cell-1-alive-neighbors-step-4) +
+      var(--cell-1-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-4: max(
+    4 - var(--cell-1-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-4) *
+        var(--more-then-3-cell-1-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-4: calc(
+    var(--cell-3-value-step-3) +
+      var(--cell-5-value-step-3) +
+      var(--cell-6-value-step-3) +
+      var(--cell-7-value-step-3) +
+      var(--cell-1-value-step-3) +
+      var(--cell-15-value-step-3) +
+      var(--cell-14-value-step-3) +
+      var(--cell-13-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-4: max(
+    var(--cell-2-alive-neighbors-step-4) +
+      var(--cell-2-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-4: max(
+    4 - var(--cell-2-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-4) *
+        var(--more-then-3-cell-2-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-4: calc(
+    var(--cell-4-value-step-3) +
+      var(--cell-6-value-step-3) +
+      var(--cell-7-value-step-3) +
+      var(--cell-8-value-step-3) +
+      var(--cell-2-value-step-3) +
+      var(--cell-0-value-step-3) +
+      var(--cell-15-value-step-3) +
+      var(--cell-14-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-4: max(
+    var(--cell-3-alive-neighbors-step-4) +
+      var(--cell-3-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-4: max(
+    4 - var(--cell-3-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-4) *
+        var(--more-then-3-cell-3-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-4: calc(
+    var(--cell-5-value-step-3) +
+      var(--cell-7-value-step-3) +
+      var(--cell-8-value-step-3) +
+      var(--cell-9-value-step-3) +
+      var(--cell-3-value-step-3) +
+      var(--cell-1-value-step-3) +
+      var(--cell-0-value-step-3) +
+      var(--cell-15-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-4: max(
+    var(--cell-4-alive-neighbors-step-4) +
+      var(--cell-4-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-4: max(
+    4 - var(--cell-4-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-4) *
+        var(--more-then-3-cell-4-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-4: calc(
+    var(--cell-6-value-step-3) +
+      var(--cell-8-value-step-3) +
+      var(--cell-9-value-step-3) +
+      var(--cell-10-value-step-3) +
+      var(--cell-4-value-step-3) +
+      var(--cell-2-value-step-3) +
+      var(--cell-1-value-step-3) +
+      var(--cell-0-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-4: max(
+    var(--cell-5-alive-neighbors-step-4) +
+      var(--cell-5-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-4: max(
+    4 - var(--cell-5-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-4) *
+        var(--more-then-3-cell-5-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-4: calc(
+    var(--cell-7-value-step-3) +
+      var(--cell-9-value-step-3) +
+      var(--cell-10-value-step-3) +
+      var(--cell-11-value-step-3) +
+      var(--cell-5-value-step-3) +
+      var(--cell-3-value-step-3) +
+      var(--cell-2-value-step-3) +
+      var(--cell-1-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-4: max(
+    var(--cell-6-alive-neighbors-step-4) +
+      var(--cell-6-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-4: max(
+    4 - var(--cell-6-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-4) *
+        var(--more-then-3-cell-6-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-4: calc(
+    var(--cell-8-value-step-3) +
+      var(--cell-10-value-step-3) +
+      var(--cell-11-value-step-3) +
+      var(--cell-12-value-step-3) +
+      var(--cell-6-value-step-3) +
+      var(--cell-4-value-step-3) +
+      var(--cell-3-value-step-3) +
+      var(--cell-2-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-4: max(
+    var(--cell-7-alive-neighbors-step-4) +
+      var(--cell-7-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-4: max(
+    4 - var(--cell-7-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-4) *
+        var(--more-then-3-cell-7-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-4: calc(
+    var(--cell-9-value-step-3) +
+      var(--cell-11-value-step-3) +
+      var(--cell-12-value-step-3) +
+      var(--cell-13-value-step-3) +
+      var(--cell-7-value-step-3) +
+      var(--cell-5-value-step-3) +
+      var(--cell-4-value-step-3) +
+      var(--cell-3-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-4: max(
+    var(--cell-8-alive-neighbors-step-4) +
+      var(--cell-8-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-4: max(
+    4 - var(--cell-8-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-4) *
+        var(--more-then-3-cell-8-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-4: calc(
+    var(--cell-10-value-step-3) +
+      var(--cell-12-value-step-3) +
+      var(--cell-13-value-step-3) +
+      var(--cell-14-value-step-3) +
+      var(--cell-8-value-step-3) +
+      var(--cell-6-value-step-3) +
+      var(--cell-5-value-step-3) +
+      var(--cell-4-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-4: max(
+    var(--cell-9-alive-neighbors-step-4) +
+      var(--cell-9-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-4: max(
+    4 - var(--cell-9-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-4) *
+        var(--more-then-3-cell-9-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-4: calc(
+    var(--cell-11-value-step-3) +
+      var(--cell-13-value-step-3) +
+      var(--cell-14-value-step-3) +
+      var(--cell-15-value-step-3) +
+      var(--cell-9-value-step-3) +
+      var(--cell-7-value-step-3) +
+      var(--cell-6-value-step-3) +
+      var(--cell-5-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-4: max(
+    var(--cell-10-alive-neighbors-step-4) +
+      var(--cell-10-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-4: max(
+    4 - var(--cell-10-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-4) *
+        var(--more-then-3-cell-10-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-4: calc(
+    var(--cell-12-value-step-3) +
+      var(--cell-14-value-step-3) +
+      var(--cell-15-value-step-3) +
+      var(--cell-0-value-step-3) +
+      var(--cell-10-value-step-3) +
+      var(--cell-8-value-step-3) +
+      var(--cell-7-value-step-3) +
+      var(--cell-6-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-4: max(
+    var(--cell-11-alive-neighbors-step-4) +
+      var(--cell-11-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-4: max(
+    4 - var(--cell-11-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-4) *
+        var(--more-then-3-cell-11-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-4: calc(
+    var(--cell-13-value-step-3) +
+      var(--cell-15-value-step-3) +
+      var(--cell-0-value-step-3) +
+      var(--cell-1-value-step-3) +
+      var(--cell-11-value-step-3) +
+      var(--cell-9-value-step-3) +
+      var(--cell-8-value-step-3) +
+      var(--cell-7-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-4: max(
+    var(--cell-12-alive-neighbors-step-4) +
+      var(--cell-12-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-4: max(
+    4 - var(--cell-12-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-4) *
+        var(--more-then-3-cell-12-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-4: calc(
+    var(--cell-14-value-step-3) +
+      var(--cell-0-value-step-3) +
+      var(--cell-1-value-step-3) +
+      var(--cell-2-value-step-3) +
+      var(--cell-12-value-step-3) +
+      var(--cell-10-value-step-3) +
+      var(--cell-9-value-step-3) +
+      var(--cell-8-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-4: max(
+    var(--cell-13-alive-neighbors-step-4) +
+      var(--cell-13-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-4: max(
+    4 - var(--cell-13-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-4) *
+        var(--more-then-3-cell-13-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-4: calc(
+    var(--cell-15-value-step-3) +
+      var(--cell-1-value-step-3) +
+      var(--cell-2-value-step-3) +
+      var(--cell-3-value-step-3) +
+      var(--cell-13-value-step-3) +
+      var(--cell-11-value-step-3) +
+      var(--cell-10-value-step-3) +
+      var(--cell-9-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-4: max(
+    var(--cell-14-alive-neighbors-step-4) +
+      var(--cell-14-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-4: max(
+    4 - var(--cell-14-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-4) *
+        var(--more-then-3-cell-14-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-4: calc(
+    var(--cell-0-value-step-3) +
+      var(--cell-2-value-step-3) +
+      var(--cell-3-value-step-3) +
+      var(--cell-4-value-step-3) +
+      var(--cell-14-value-step-3) +
+      var(--cell-12-value-step-3) +
+      var(--cell-11-value-step-3) +
+      var(--cell-10-value-step-3)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-4: max(
+    var(--cell-15-alive-neighbors-step-4) +
+      var(--cell-15-value-step-3) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-4: max(
+    4 - var(--cell-15-alive-neighbors-step-4),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-4: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-4) *
+        var(--more-then-3-cell-15-step-4)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-5: calc(
+    var(--cell-1-value-step-4) +
+      var(--cell-3-value-step-4) +
+      var(--cell-4-value-step-4) +
+      var(--cell-5-value-step-4) +
+      var(--cell-15-value-step-4) +
+      var(--cell-13-value-step-4) +
+      var(--cell-12-value-step-4) +
+      var(--cell-11-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-5: max(
+    var(--cell-0-alive-neighbors-step-5) +
+      var(--cell-0-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-0-step-5: max(
+    4 - var(--cell-0-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-5) *
+        var(--more-then-3-cell-0-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-5: calc(
+    var(--cell-2-value-step-4) +
+      var(--cell-4-value-step-4) +
+      var(--cell-5-value-step-4) +
+      var(--cell-6-value-step-4) +
+      var(--cell-0-value-step-4) +
+      var(--cell-14-value-step-4) +
+      var(--cell-13-value-step-4) +
+      var(--cell-12-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-5: max(
+    var(--cell-1-alive-neighbors-step-5) +
+      var(--cell-1-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-5: max(
+    4 - var(--cell-1-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-5) *
+        var(--more-then-3-cell-1-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-5: calc(
+    var(--cell-3-value-step-4) +
+      var(--cell-5-value-step-4) +
+      var(--cell-6-value-step-4) +
+      var(--cell-7-value-step-4) +
+      var(--cell-1-value-step-4) +
+      var(--cell-15-value-step-4) +
+      var(--cell-14-value-step-4) +
+      var(--cell-13-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-5: max(
+    var(--cell-2-alive-neighbors-step-5) +
+      var(--cell-2-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-5: max(
+    4 - var(--cell-2-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-5) *
+        var(--more-then-3-cell-2-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-5: calc(
+    var(--cell-4-value-step-4) +
+      var(--cell-6-value-step-4) +
+      var(--cell-7-value-step-4) +
+      var(--cell-8-value-step-4) +
+      var(--cell-2-value-step-4) +
+      var(--cell-0-value-step-4) +
+      var(--cell-15-value-step-4) +
+      var(--cell-14-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-5: max(
+    var(--cell-3-alive-neighbors-step-5) +
+      var(--cell-3-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-5: max(
+    4 - var(--cell-3-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-5) *
+        var(--more-then-3-cell-3-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-5: calc(
+    var(--cell-5-value-step-4) +
+      var(--cell-7-value-step-4) +
+      var(--cell-8-value-step-4) +
+      var(--cell-9-value-step-4) +
+      var(--cell-3-value-step-4) +
+      var(--cell-1-value-step-4) +
+      var(--cell-0-value-step-4) +
+      var(--cell-15-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-5: max(
+    var(--cell-4-alive-neighbors-step-5) +
+      var(--cell-4-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-5: max(
+    4 - var(--cell-4-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-5) *
+        var(--more-then-3-cell-4-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-5: calc(
+    var(--cell-6-value-step-4) +
+      var(--cell-8-value-step-4) +
+      var(--cell-9-value-step-4) +
+      var(--cell-10-value-step-4) +
+      var(--cell-4-value-step-4) +
+      var(--cell-2-value-step-4) +
+      var(--cell-1-value-step-4) +
+      var(--cell-0-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-5: max(
+    var(--cell-5-alive-neighbors-step-5) +
+      var(--cell-5-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-5: max(
+    4 - var(--cell-5-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-5) *
+        var(--more-then-3-cell-5-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-5: calc(
+    var(--cell-7-value-step-4) +
+      var(--cell-9-value-step-4) +
+      var(--cell-10-value-step-4) +
+      var(--cell-11-value-step-4) +
+      var(--cell-5-value-step-4) +
+      var(--cell-3-value-step-4) +
+      var(--cell-2-value-step-4) +
+      var(--cell-1-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-5: max(
+    var(--cell-6-alive-neighbors-step-5) +
+      var(--cell-6-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-5: max(
+    4 - var(--cell-6-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-5) *
+        var(--more-then-3-cell-6-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-5: calc(
+    var(--cell-8-value-step-4) +
+      var(--cell-10-value-step-4) +
+      var(--cell-11-value-step-4) +
+      var(--cell-12-value-step-4) +
+      var(--cell-6-value-step-4) +
+      var(--cell-4-value-step-4) +
+      var(--cell-3-value-step-4) +
+      var(--cell-2-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-5: max(
+    var(--cell-7-alive-neighbors-step-5) +
+      var(--cell-7-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-5: max(
+    4 - var(--cell-7-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-5) *
+        var(--more-then-3-cell-7-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-5: calc(
+    var(--cell-9-value-step-4) +
+      var(--cell-11-value-step-4) +
+      var(--cell-12-value-step-4) +
+      var(--cell-13-value-step-4) +
+      var(--cell-7-value-step-4) +
+      var(--cell-5-value-step-4) +
+      var(--cell-4-value-step-4) +
+      var(--cell-3-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-5: max(
+    var(--cell-8-alive-neighbors-step-5) +
+      var(--cell-8-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-5: max(
+    4 - var(--cell-8-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-5) *
+        var(--more-then-3-cell-8-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-5: calc(
+    var(--cell-10-value-step-4) +
+      var(--cell-12-value-step-4) +
+      var(--cell-13-value-step-4) +
+      var(--cell-14-value-step-4) +
+      var(--cell-8-value-step-4) +
+      var(--cell-6-value-step-4) +
+      var(--cell-5-value-step-4) +
+      var(--cell-4-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-5: max(
+    var(--cell-9-alive-neighbors-step-5) +
+      var(--cell-9-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-5: max(
+    4 - var(--cell-9-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-5) *
+        var(--more-then-3-cell-9-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-5: calc(
+    var(--cell-11-value-step-4) +
+      var(--cell-13-value-step-4) +
+      var(--cell-14-value-step-4) +
+      var(--cell-15-value-step-4) +
+      var(--cell-9-value-step-4) +
+      var(--cell-7-value-step-4) +
+      var(--cell-6-value-step-4) +
+      var(--cell-5-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-5: max(
+    var(--cell-10-alive-neighbors-step-5) +
+      var(--cell-10-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-5: max(
+    4 - var(--cell-10-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-5) *
+        var(--more-then-3-cell-10-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-5: calc(
+    var(--cell-12-value-step-4) +
+      var(--cell-14-value-step-4) +
+      var(--cell-15-value-step-4) +
+      var(--cell-0-value-step-4) +
+      var(--cell-10-value-step-4) +
+      var(--cell-8-value-step-4) +
+      var(--cell-7-value-step-4) +
+      var(--cell-6-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-5: max(
+    var(--cell-11-alive-neighbors-step-5) +
+      var(--cell-11-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-5: max(
+    4 - var(--cell-11-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-5) *
+        var(--more-then-3-cell-11-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-5: calc(
+    var(--cell-13-value-step-4) +
+      var(--cell-15-value-step-4) +
+      var(--cell-0-value-step-4) +
+      var(--cell-1-value-step-4) +
+      var(--cell-11-value-step-4) +
+      var(--cell-9-value-step-4) +
+      var(--cell-8-value-step-4) +
+      var(--cell-7-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-5: max(
+    var(--cell-12-alive-neighbors-step-5) +
+      var(--cell-12-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-5: max(
+    4 - var(--cell-12-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-5) *
+        var(--more-then-3-cell-12-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-5: calc(
+    var(--cell-14-value-step-4) +
+      var(--cell-0-value-step-4) +
+      var(--cell-1-value-step-4) +
+      var(--cell-2-value-step-4) +
+      var(--cell-12-value-step-4) +
+      var(--cell-10-value-step-4) +
+      var(--cell-9-value-step-4) +
+      var(--cell-8-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-5: max(
+    var(--cell-13-alive-neighbors-step-5) +
+      var(--cell-13-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-5: max(
+    4 - var(--cell-13-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-5) *
+        var(--more-then-3-cell-13-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-5: calc(
+    var(--cell-15-value-step-4) +
+      var(--cell-1-value-step-4) +
+      var(--cell-2-value-step-4) +
+      var(--cell-3-value-step-4) +
+      var(--cell-13-value-step-4) +
+      var(--cell-11-value-step-4) +
+      var(--cell-10-value-step-4) +
+      var(--cell-9-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-5: max(
+    var(--cell-14-alive-neighbors-step-5) +
+      var(--cell-14-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-5: max(
+    4 - var(--cell-14-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-5) *
+        var(--more-then-3-cell-14-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-5: calc(
+    var(--cell-0-value-step-4) +
+      var(--cell-2-value-step-4) +
+      var(--cell-3-value-step-4) +
+      var(--cell-4-value-step-4) +
+      var(--cell-14-value-step-4) +
+      var(--cell-12-value-step-4) +
+      var(--cell-11-value-step-4) +
+      var(--cell-10-value-step-4)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-5: max(
+    var(--cell-15-alive-neighbors-step-5) +
+      var(--cell-15-value-step-4) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-5: max(
+    4 - var(--cell-15-alive-neighbors-step-5),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-5: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-5) *
+        var(--more-then-3-cell-15-step-5)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-6: calc(
+    var(--cell-1-value-step-5) +
+      var(--cell-3-value-step-5) +
+      var(--cell-4-value-step-5) +
+      var(--cell-5-value-step-5) +
+      var(--cell-15-value-step-5) +
+      var(--cell-13-value-step-5) +
+      var(--cell-12-value-step-5) +
+      var(--cell-11-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-6: max(
+    var(--cell-0-alive-neighbors-step-6) +
+      var(--cell-0-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-0-step-6: max(
+    4 - var(--cell-0-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-6) *
+        var(--more-then-3-cell-0-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-6: calc(
+    var(--cell-2-value-step-5) +
+      var(--cell-4-value-step-5) +
+      var(--cell-5-value-step-5) +
+      var(--cell-6-value-step-5) +
+      var(--cell-0-value-step-5) +
+      var(--cell-14-value-step-5) +
+      var(--cell-13-value-step-5) +
+      var(--cell-12-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-6: max(
+    var(--cell-1-alive-neighbors-step-6) +
+      var(--cell-1-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-6: max(
+    4 - var(--cell-1-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-6) *
+        var(--more-then-3-cell-1-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-6: calc(
+    var(--cell-3-value-step-5) +
+      var(--cell-5-value-step-5) +
+      var(--cell-6-value-step-5) +
+      var(--cell-7-value-step-5) +
+      var(--cell-1-value-step-5) +
+      var(--cell-15-value-step-5) +
+      var(--cell-14-value-step-5) +
+      var(--cell-13-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-6: max(
+    var(--cell-2-alive-neighbors-step-6) +
+      var(--cell-2-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-6: max(
+    4 - var(--cell-2-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-6) *
+        var(--more-then-3-cell-2-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-6: calc(
+    var(--cell-4-value-step-5) +
+      var(--cell-6-value-step-5) +
+      var(--cell-7-value-step-5) +
+      var(--cell-8-value-step-5) +
+      var(--cell-2-value-step-5) +
+      var(--cell-0-value-step-5) +
+      var(--cell-15-value-step-5) +
+      var(--cell-14-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-6: max(
+    var(--cell-3-alive-neighbors-step-6) +
+      var(--cell-3-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-6: max(
+    4 - var(--cell-3-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-6) *
+        var(--more-then-3-cell-3-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-6: calc(
+    var(--cell-5-value-step-5) +
+      var(--cell-7-value-step-5) +
+      var(--cell-8-value-step-5) +
+      var(--cell-9-value-step-5) +
+      var(--cell-3-value-step-5) +
+      var(--cell-1-value-step-5) +
+      var(--cell-0-value-step-5) +
+      var(--cell-15-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-6: max(
+    var(--cell-4-alive-neighbors-step-6) +
+      var(--cell-4-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-6: max(
+    4 - var(--cell-4-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-6) *
+        var(--more-then-3-cell-4-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-6: calc(
+    var(--cell-6-value-step-5) +
+      var(--cell-8-value-step-5) +
+      var(--cell-9-value-step-5) +
+      var(--cell-10-value-step-5) +
+      var(--cell-4-value-step-5) +
+      var(--cell-2-value-step-5) +
+      var(--cell-1-value-step-5) +
+      var(--cell-0-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-6: max(
+    var(--cell-5-alive-neighbors-step-6) +
+      var(--cell-5-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-6: max(
+    4 - var(--cell-5-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-6) *
+        var(--more-then-3-cell-5-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-6: calc(
+    var(--cell-7-value-step-5) +
+      var(--cell-9-value-step-5) +
+      var(--cell-10-value-step-5) +
+      var(--cell-11-value-step-5) +
+      var(--cell-5-value-step-5) +
+      var(--cell-3-value-step-5) +
+      var(--cell-2-value-step-5) +
+      var(--cell-1-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-6: max(
+    var(--cell-6-alive-neighbors-step-6) +
+      var(--cell-6-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-6: max(
+    4 - var(--cell-6-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-6) *
+        var(--more-then-3-cell-6-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-6: calc(
+    var(--cell-8-value-step-5) +
+      var(--cell-10-value-step-5) +
+      var(--cell-11-value-step-5) +
+      var(--cell-12-value-step-5) +
+      var(--cell-6-value-step-5) +
+      var(--cell-4-value-step-5) +
+      var(--cell-3-value-step-5) +
+      var(--cell-2-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-6: max(
+    var(--cell-7-alive-neighbors-step-6) +
+      var(--cell-7-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-6: max(
+    4 - var(--cell-7-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-6) *
+        var(--more-then-3-cell-7-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-6: calc(
+    var(--cell-9-value-step-5) +
+      var(--cell-11-value-step-5) +
+      var(--cell-12-value-step-5) +
+      var(--cell-13-value-step-5) +
+      var(--cell-7-value-step-5) +
+      var(--cell-5-value-step-5) +
+      var(--cell-4-value-step-5) +
+      var(--cell-3-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-6: max(
+    var(--cell-8-alive-neighbors-step-6) +
+      var(--cell-8-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-6: max(
+    4 - var(--cell-8-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-6) *
+        var(--more-then-3-cell-8-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-6: calc(
+    var(--cell-10-value-step-5) +
+      var(--cell-12-value-step-5) +
+      var(--cell-13-value-step-5) +
+      var(--cell-14-value-step-5) +
+      var(--cell-8-value-step-5) +
+      var(--cell-6-value-step-5) +
+      var(--cell-5-value-step-5) +
+      var(--cell-4-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-6: max(
+    var(--cell-9-alive-neighbors-step-6) +
+      var(--cell-9-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-6: max(
+    4 - var(--cell-9-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-6) *
+        var(--more-then-3-cell-9-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-6: calc(
+    var(--cell-11-value-step-5) +
+      var(--cell-13-value-step-5) +
+      var(--cell-14-value-step-5) +
+      var(--cell-15-value-step-5) +
+      var(--cell-9-value-step-5) +
+      var(--cell-7-value-step-5) +
+      var(--cell-6-value-step-5) +
+      var(--cell-5-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-6: max(
+    var(--cell-10-alive-neighbors-step-6) +
+      var(--cell-10-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-6: max(
+    4 - var(--cell-10-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-6) *
+        var(--more-then-3-cell-10-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-6: calc(
+    var(--cell-12-value-step-5) +
+      var(--cell-14-value-step-5) +
+      var(--cell-15-value-step-5) +
+      var(--cell-0-value-step-5) +
+      var(--cell-10-value-step-5) +
+      var(--cell-8-value-step-5) +
+      var(--cell-7-value-step-5) +
+      var(--cell-6-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-6: max(
+    var(--cell-11-alive-neighbors-step-6) +
+      var(--cell-11-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-6: max(
+    4 - var(--cell-11-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-6) *
+        var(--more-then-3-cell-11-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-6: calc(
+    var(--cell-13-value-step-5) +
+      var(--cell-15-value-step-5) +
+      var(--cell-0-value-step-5) +
+      var(--cell-1-value-step-5) +
+      var(--cell-11-value-step-5) +
+      var(--cell-9-value-step-5) +
+      var(--cell-8-value-step-5) +
+      var(--cell-7-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-6: max(
+    var(--cell-12-alive-neighbors-step-6) +
+      var(--cell-12-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-6: max(
+    4 - var(--cell-12-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-6) *
+        var(--more-then-3-cell-12-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-6: calc(
+    var(--cell-14-value-step-5) +
+      var(--cell-0-value-step-5) +
+      var(--cell-1-value-step-5) +
+      var(--cell-2-value-step-5) +
+      var(--cell-12-value-step-5) +
+      var(--cell-10-value-step-5) +
+      var(--cell-9-value-step-5) +
+      var(--cell-8-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-6: max(
+    var(--cell-13-alive-neighbors-step-6) +
+      var(--cell-13-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-6: max(
+    4 - var(--cell-13-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-6) *
+        var(--more-then-3-cell-13-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-6: calc(
+    var(--cell-15-value-step-5) +
+      var(--cell-1-value-step-5) +
+      var(--cell-2-value-step-5) +
+      var(--cell-3-value-step-5) +
+      var(--cell-13-value-step-5) +
+      var(--cell-11-value-step-5) +
+      var(--cell-10-value-step-5) +
+      var(--cell-9-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-6: max(
+    var(--cell-14-alive-neighbors-step-6) +
+      var(--cell-14-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-6: max(
+    4 - var(--cell-14-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-6) *
+        var(--more-then-3-cell-14-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-6: calc(
+    var(--cell-0-value-step-5) +
+      var(--cell-2-value-step-5) +
+      var(--cell-3-value-step-5) +
+      var(--cell-4-value-step-5) +
+      var(--cell-14-value-step-5) +
+      var(--cell-12-value-step-5) +
+      var(--cell-11-value-step-5) +
+      var(--cell-10-value-step-5)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-6: max(
+    var(--cell-15-alive-neighbors-step-6) +
+      var(--cell-15-value-step-5) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-6: max(
+    4 - var(--cell-15-alive-neighbors-step-6),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-6: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-6) *
+        var(--more-then-3-cell-15-step-6)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-7: calc(
+    var(--cell-1-value-step-6) +
+      var(--cell-3-value-step-6) +
+      var(--cell-4-value-step-6) +
+      var(--cell-5-value-step-6) +
+      var(--cell-15-value-step-6) +
+      var(--cell-13-value-step-6) +
+      var(--cell-12-value-step-6) +
+      var(--cell-11-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-7: max(
+    var(--cell-0-alive-neighbors-step-7) +
+      var(--cell-0-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-0-step-7: max(
+    4 - var(--cell-0-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-7) *
+        var(--more-then-3-cell-0-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-7: calc(
+    var(--cell-2-value-step-6) +
+      var(--cell-4-value-step-6) +
+      var(--cell-5-value-step-6) +
+      var(--cell-6-value-step-6) +
+      var(--cell-0-value-step-6) +
+      var(--cell-14-value-step-6) +
+      var(--cell-13-value-step-6) +
+      var(--cell-12-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-7: max(
+    var(--cell-1-alive-neighbors-step-7) +
+      var(--cell-1-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-7: max(
+    4 - var(--cell-1-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-7) *
+        var(--more-then-3-cell-1-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-7: calc(
+    var(--cell-3-value-step-6) +
+      var(--cell-5-value-step-6) +
+      var(--cell-6-value-step-6) +
+      var(--cell-7-value-step-6) +
+      var(--cell-1-value-step-6) +
+      var(--cell-15-value-step-6) +
+      var(--cell-14-value-step-6) +
+      var(--cell-13-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-7: max(
+    var(--cell-2-alive-neighbors-step-7) +
+      var(--cell-2-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-7: max(
+    4 - var(--cell-2-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-7) *
+        var(--more-then-3-cell-2-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-7: calc(
+    var(--cell-4-value-step-6) +
+      var(--cell-6-value-step-6) +
+      var(--cell-7-value-step-6) +
+      var(--cell-8-value-step-6) +
+      var(--cell-2-value-step-6) +
+      var(--cell-0-value-step-6) +
+      var(--cell-15-value-step-6) +
+      var(--cell-14-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-7: max(
+    var(--cell-3-alive-neighbors-step-7) +
+      var(--cell-3-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-7: max(
+    4 - var(--cell-3-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-7) *
+        var(--more-then-3-cell-3-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-7: calc(
+    var(--cell-5-value-step-6) +
+      var(--cell-7-value-step-6) +
+      var(--cell-8-value-step-6) +
+      var(--cell-9-value-step-6) +
+      var(--cell-3-value-step-6) +
+      var(--cell-1-value-step-6) +
+      var(--cell-0-value-step-6) +
+      var(--cell-15-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-7: max(
+    var(--cell-4-alive-neighbors-step-7) +
+      var(--cell-4-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-7: max(
+    4 - var(--cell-4-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-7) *
+        var(--more-then-3-cell-4-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-7: calc(
+    var(--cell-6-value-step-6) +
+      var(--cell-8-value-step-6) +
+      var(--cell-9-value-step-6) +
+      var(--cell-10-value-step-6) +
+      var(--cell-4-value-step-6) +
+      var(--cell-2-value-step-6) +
+      var(--cell-1-value-step-6) +
+      var(--cell-0-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-7: max(
+    var(--cell-5-alive-neighbors-step-7) +
+      var(--cell-5-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-7: max(
+    4 - var(--cell-5-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-7) *
+        var(--more-then-3-cell-5-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-7: calc(
+    var(--cell-7-value-step-6) +
+      var(--cell-9-value-step-6) +
+      var(--cell-10-value-step-6) +
+      var(--cell-11-value-step-6) +
+      var(--cell-5-value-step-6) +
+      var(--cell-3-value-step-6) +
+      var(--cell-2-value-step-6) +
+      var(--cell-1-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-7: max(
+    var(--cell-6-alive-neighbors-step-7) +
+      var(--cell-6-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-7: max(
+    4 - var(--cell-6-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-7) *
+        var(--more-then-3-cell-6-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-7: calc(
+    var(--cell-8-value-step-6) +
+      var(--cell-10-value-step-6) +
+      var(--cell-11-value-step-6) +
+      var(--cell-12-value-step-6) +
+      var(--cell-6-value-step-6) +
+      var(--cell-4-value-step-6) +
+      var(--cell-3-value-step-6) +
+      var(--cell-2-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-7: max(
+    var(--cell-7-alive-neighbors-step-7) +
+      var(--cell-7-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-7: max(
+    4 - var(--cell-7-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-7) *
+        var(--more-then-3-cell-7-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-7: calc(
+    var(--cell-9-value-step-6) +
+      var(--cell-11-value-step-6) +
+      var(--cell-12-value-step-6) +
+      var(--cell-13-value-step-6) +
+      var(--cell-7-value-step-6) +
+      var(--cell-5-value-step-6) +
+      var(--cell-4-value-step-6) +
+      var(--cell-3-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-7: max(
+    var(--cell-8-alive-neighbors-step-7) +
+      var(--cell-8-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-7: max(
+    4 - var(--cell-8-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-7) *
+        var(--more-then-3-cell-8-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-7: calc(
+    var(--cell-10-value-step-6) +
+      var(--cell-12-value-step-6) +
+      var(--cell-13-value-step-6) +
+      var(--cell-14-value-step-6) +
+      var(--cell-8-value-step-6) +
+      var(--cell-6-value-step-6) +
+      var(--cell-5-value-step-6) +
+      var(--cell-4-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-7: max(
+    var(--cell-9-alive-neighbors-step-7) +
+      var(--cell-9-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-7: max(
+    4 - var(--cell-9-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-7) *
+        var(--more-then-3-cell-9-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-7: calc(
+    var(--cell-11-value-step-6) +
+      var(--cell-13-value-step-6) +
+      var(--cell-14-value-step-6) +
+      var(--cell-15-value-step-6) +
+      var(--cell-9-value-step-6) +
+      var(--cell-7-value-step-6) +
+      var(--cell-6-value-step-6) +
+      var(--cell-5-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-7: max(
+    var(--cell-10-alive-neighbors-step-7) +
+      var(--cell-10-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-7: max(
+    4 - var(--cell-10-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-7) *
+        var(--more-then-3-cell-10-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-7: calc(
+    var(--cell-12-value-step-6) +
+      var(--cell-14-value-step-6) +
+      var(--cell-15-value-step-6) +
+      var(--cell-0-value-step-6) +
+      var(--cell-10-value-step-6) +
+      var(--cell-8-value-step-6) +
+      var(--cell-7-value-step-6) +
+      var(--cell-6-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-7: max(
+    var(--cell-11-alive-neighbors-step-7) +
+      var(--cell-11-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-7: max(
+    4 - var(--cell-11-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-7) *
+        var(--more-then-3-cell-11-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-7: calc(
+    var(--cell-13-value-step-6) +
+      var(--cell-15-value-step-6) +
+      var(--cell-0-value-step-6) +
+      var(--cell-1-value-step-6) +
+      var(--cell-11-value-step-6) +
+      var(--cell-9-value-step-6) +
+      var(--cell-8-value-step-6) +
+      var(--cell-7-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-7: max(
+    var(--cell-12-alive-neighbors-step-7) +
+      var(--cell-12-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-7: max(
+    4 - var(--cell-12-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-7) *
+        var(--more-then-3-cell-12-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-7: calc(
+    var(--cell-14-value-step-6) +
+      var(--cell-0-value-step-6) +
+      var(--cell-1-value-step-6) +
+      var(--cell-2-value-step-6) +
+      var(--cell-12-value-step-6) +
+      var(--cell-10-value-step-6) +
+      var(--cell-9-value-step-6) +
+      var(--cell-8-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-7: max(
+    var(--cell-13-alive-neighbors-step-7) +
+      var(--cell-13-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-7: max(
+    4 - var(--cell-13-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-7) *
+        var(--more-then-3-cell-13-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-7: calc(
+    var(--cell-15-value-step-6) +
+      var(--cell-1-value-step-6) +
+      var(--cell-2-value-step-6) +
+      var(--cell-3-value-step-6) +
+      var(--cell-13-value-step-6) +
+      var(--cell-11-value-step-6) +
+      var(--cell-10-value-step-6) +
+      var(--cell-9-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-7: max(
+    var(--cell-14-alive-neighbors-step-7) +
+      var(--cell-14-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-7: max(
+    4 - var(--cell-14-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-7) *
+        var(--more-then-3-cell-14-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-7: calc(
+    var(--cell-0-value-step-6) +
+      var(--cell-2-value-step-6) +
+      var(--cell-3-value-step-6) +
+      var(--cell-4-value-step-6) +
+      var(--cell-14-value-step-6) +
+      var(--cell-12-value-step-6) +
+      var(--cell-11-value-step-6) +
+      var(--cell-10-value-step-6)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-7: max(
+    var(--cell-15-alive-neighbors-step-7) +
+      var(--cell-15-value-step-6) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-7: max(
+    4 - var(--cell-15-alive-neighbors-step-7),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-7: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-7) *
+        var(--more-then-3-cell-15-step-7)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-8: calc(
+    var(--cell-1-value-step-7) +
+      var(--cell-3-value-step-7) +
+      var(--cell-4-value-step-7) +
+      var(--cell-5-value-step-7) +
+      var(--cell-15-value-step-7) +
+      var(--cell-13-value-step-7) +
+      var(--cell-12-value-step-7) +
+      var(--cell-11-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-8: max(
+    var(--cell-0-alive-neighbors-step-8) +
+      var(--cell-0-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-0-step-8: max(
+    4 - var(--cell-0-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-8) *
+        var(--more-then-3-cell-0-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-8: calc(
+    var(--cell-2-value-step-7) +
+      var(--cell-4-value-step-7) +
+      var(--cell-5-value-step-7) +
+      var(--cell-6-value-step-7) +
+      var(--cell-0-value-step-7) +
+      var(--cell-14-value-step-7) +
+      var(--cell-13-value-step-7) +
+      var(--cell-12-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-8: max(
+    var(--cell-1-alive-neighbors-step-8) +
+      var(--cell-1-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-8: max(
+    4 - var(--cell-1-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-8) *
+        var(--more-then-3-cell-1-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-8: calc(
+    var(--cell-3-value-step-7) +
+      var(--cell-5-value-step-7) +
+      var(--cell-6-value-step-7) +
+      var(--cell-7-value-step-7) +
+      var(--cell-1-value-step-7) +
+      var(--cell-15-value-step-7) +
+      var(--cell-14-value-step-7) +
+      var(--cell-13-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-8: max(
+    var(--cell-2-alive-neighbors-step-8) +
+      var(--cell-2-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-8: max(
+    4 - var(--cell-2-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-8) *
+        var(--more-then-3-cell-2-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-8: calc(
+    var(--cell-4-value-step-7) +
+      var(--cell-6-value-step-7) +
+      var(--cell-7-value-step-7) +
+      var(--cell-8-value-step-7) +
+      var(--cell-2-value-step-7) +
+      var(--cell-0-value-step-7) +
+      var(--cell-15-value-step-7) +
+      var(--cell-14-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-8: max(
+    var(--cell-3-alive-neighbors-step-8) +
+      var(--cell-3-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-8: max(
+    4 - var(--cell-3-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-8) *
+        var(--more-then-3-cell-3-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-8: calc(
+    var(--cell-5-value-step-7) +
+      var(--cell-7-value-step-7) +
+      var(--cell-8-value-step-7) +
+      var(--cell-9-value-step-7) +
+      var(--cell-3-value-step-7) +
+      var(--cell-1-value-step-7) +
+      var(--cell-0-value-step-7) +
+      var(--cell-15-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-8: max(
+    var(--cell-4-alive-neighbors-step-8) +
+      var(--cell-4-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-8: max(
+    4 - var(--cell-4-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-8) *
+        var(--more-then-3-cell-4-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-8: calc(
+    var(--cell-6-value-step-7) +
+      var(--cell-8-value-step-7) +
+      var(--cell-9-value-step-7) +
+      var(--cell-10-value-step-7) +
+      var(--cell-4-value-step-7) +
+      var(--cell-2-value-step-7) +
+      var(--cell-1-value-step-7) +
+      var(--cell-0-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-8: max(
+    var(--cell-5-alive-neighbors-step-8) +
+      var(--cell-5-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-8: max(
+    4 - var(--cell-5-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-8) *
+        var(--more-then-3-cell-5-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-8: calc(
+    var(--cell-7-value-step-7) +
+      var(--cell-9-value-step-7) +
+      var(--cell-10-value-step-7) +
+      var(--cell-11-value-step-7) +
+      var(--cell-5-value-step-7) +
+      var(--cell-3-value-step-7) +
+      var(--cell-2-value-step-7) +
+      var(--cell-1-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-8: max(
+    var(--cell-6-alive-neighbors-step-8) +
+      var(--cell-6-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-8: max(
+    4 - var(--cell-6-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-8) *
+        var(--more-then-3-cell-6-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-8: calc(
+    var(--cell-8-value-step-7) +
+      var(--cell-10-value-step-7) +
+      var(--cell-11-value-step-7) +
+      var(--cell-12-value-step-7) +
+      var(--cell-6-value-step-7) +
+      var(--cell-4-value-step-7) +
+      var(--cell-3-value-step-7) +
+      var(--cell-2-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-8: max(
+    var(--cell-7-alive-neighbors-step-8) +
+      var(--cell-7-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-8: max(
+    4 - var(--cell-7-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-8) *
+        var(--more-then-3-cell-7-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-8: calc(
+    var(--cell-9-value-step-7) +
+      var(--cell-11-value-step-7) +
+      var(--cell-12-value-step-7) +
+      var(--cell-13-value-step-7) +
+      var(--cell-7-value-step-7) +
+      var(--cell-5-value-step-7) +
+      var(--cell-4-value-step-7) +
+      var(--cell-3-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-8: max(
+    var(--cell-8-alive-neighbors-step-8) +
+      var(--cell-8-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-8: max(
+    4 - var(--cell-8-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-8) *
+        var(--more-then-3-cell-8-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-8: calc(
+    var(--cell-10-value-step-7) +
+      var(--cell-12-value-step-7) +
+      var(--cell-13-value-step-7) +
+      var(--cell-14-value-step-7) +
+      var(--cell-8-value-step-7) +
+      var(--cell-6-value-step-7) +
+      var(--cell-5-value-step-7) +
+      var(--cell-4-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-8: max(
+    var(--cell-9-alive-neighbors-step-8) +
+      var(--cell-9-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-8: max(
+    4 - var(--cell-9-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-8) *
+        var(--more-then-3-cell-9-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-8: calc(
+    var(--cell-11-value-step-7) +
+      var(--cell-13-value-step-7) +
+      var(--cell-14-value-step-7) +
+      var(--cell-15-value-step-7) +
+      var(--cell-9-value-step-7) +
+      var(--cell-7-value-step-7) +
+      var(--cell-6-value-step-7) +
+      var(--cell-5-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-8: max(
+    var(--cell-10-alive-neighbors-step-8) +
+      var(--cell-10-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-8: max(
+    4 - var(--cell-10-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-8) *
+        var(--more-then-3-cell-10-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-8: calc(
+    var(--cell-12-value-step-7) +
+      var(--cell-14-value-step-7) +
+      var(--cell-15-value-step-7) +
+      var(--cell-0-value-step-7) +
+      var(--cell-10-value-step-7) +
+      var(--cell-8-value-step-7) +
+      var(--cell-7-value-step-7) +
+      var(--cell-6-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-8: max(
+    var(--cell-11-alive-neighbors-step-8) +
+      var(--cell-11-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-8: max(
+    4 - var(--cell-11-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-8) *
+        var(--more-then-3-cell-11-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-8: calc(
+    var(--cell-13-value-step-7) +
+      var(--cell-15-value-step-7) +
+      var(--cell-0-value-step-7) +
+      var(--cell-1-value-step-7) +
+      var(--cell-11-value-step-7) +
+      var(--cell-9-value-step-7) +
+      var(--cell-8-value-step-7) +
+      var(--cell-7-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-8: max(
+    var(--cell-12-alive-neighbors-step-8) +
+      var(--cell-12-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-8: max(
+    4 - var(--cell-12-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-8) *
+        var(--more-then-3-cell-12-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-8: calc(
+    var(--cell-14-value-step-7) +
+      var(--cell-0-value-step-7) +
+      var(--cell-1-value-step-7) +
+      var(--cell-2-value-step-7) +
+      var(--cell-12-value-step-7) +
+      var(--cell-10-value-step-7) +
+      var(--cell-9-value-step-7) +
+      var(--cell-8-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-8: max(
+    var(--cell-13-alive-neighbors-step-8) +
+      var(--cell-13-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-8: max(
+    4 - var(--cell-13-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-8) *
+        var(--more-then-3-cell-13-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-8: calc(
+    var(--cell-15-value-step-7) +
+      var(--cell-1-value-step-7) +
+      var(--cell-2-value-step-7) +
+      var(--cell-3-value-step-7) +
+      var(--cell-13-value-step-7) +
+      var(--cell-11-value-step-7) +
+      var(--cell-10-value-step-7) +
+      var(--cell-9-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-8: max(
+    var(--cell-14-alive-neighbors-step-8) +
+      var(--cell-14-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-8: max(
+    4 - var(--cell-14-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-8) *
+        var(--more-then-3-cell-14-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-8: calc(
+    var(--cell-0-value-step-7) +
+      var(--cell-2-value-step-7) +
+      var(--cell-3-value-step-7) +
+      var(--cell-4-value-step-7) +
+      var(--cell-14-value-step-7) +
+      var(--cell-12-value-step-7) +
+      var(--cell-11-value-step-7) +
+      var(--cell-10-value-step-7)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-8: max(
+    var(--cell-15-alive-neighbors-step-8) +
+      var(--cell-15-value-step-7) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-8: max(
+    4 - var(--cell-15-alive-neighbors-step-8),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-8: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-8) *
+        var(--more-then-3-cell-15-step-8)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-9: calc(
+    var(--cell-1-value-step-8) +
+      var(--cell-3-value-step-8) +
+      var(--cell-4-value-step-8) +
+      var(--cell-5-value-step-8) +
+      var(--cell-15-value-step-8) +
+      var(--cell-13-value-step-8) +
+      var(--cell-12-value-step-8) +
+      var(--cell-11-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-9: max(
+    var(--cell-0-alive-neighbors-step-9) +
+      var(--cell-0-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-0-step-9: max(
+    4 - var(--cell-0-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-9) *
+        var(--more-then-3-cell-0-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-9: calc(
+    var(--cell-2-value-step-8) +
+      var(--cell-4-value-step-8) +
+      var(--cell-5-value-step-8) +
+      var(--cell-6-value-step-8) +
+      var(--cell-0-value-step-8) +
+      var(--cell-14-value-step-8) +
+      var(--cell-13-value-step-8) +
+      var(--cell-12-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-9: max(
+    var(--cell-1-alive-neighbors-step-9) +
+      var(--cell-1-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-9: max(
+    4 - var(--cell-1-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-9) *
+        var(--more-then-3-cell-1-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-9: calc(
+    var(--cell-3-value-step-8) +
+      var(--cell-5-value-step-8) +
+      var(--cell-6-value-step-8) +
+      var(--cell-7-value-step-8) +
+      var(--cell-1-value-step-8) +
+      var(--cell-15-value-step-8) +
+      var(--cell-14-value-step-8) +
+      var(--cell-13-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-9: max(
+    var(--cell-2-alive-neighbors-step-9) +
+      var(--cell-2-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-9: max(
+    4 - var(--cell-2-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-9) *
+        var(--more-then-3-cell-2-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-9: calc(
+    var(--cell-4-value-step-8) +
+      var(--cell-6-value-step-8) +
+      var(--cell-7-value-step-8) +
+      var(--cell-8-value-step-8) +
+      var(--cell-2-value-step-8) +
+      var(--cell-0-value-step-8) +
+      var(--cell-15-value-step-8) +
+      var(--cell-14-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-9: max(
+    var(--cell-3-alive-neighbors-step-9) +
+      var(--cell-3-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-9: max(
+    4 - var(--cell-3-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-9) *
+        var(--more-then-3-cell-3-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-9: calc(
+    var(--cell-5-value-step-8) +
+      var(--cell-7-value-step-8) +
+      var(--cell-8-value-step-8) +
+      var(--cell-9-value-step-8) +
+      var(--cell-3-value-step-8) +
+      var(--cell-1-value-step-8) +
+      var(--cell-0-value-step-8) +
+      var(--cell-15-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-9: max(
+    var(--cell-4-alive-neighbors-step-9) +
+      var(--cell-4-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-9: max(
+    4 - var(--cell-4-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-9) *
+        var(--more-then-3-cell-4-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-9: calc(
+    var(--cell-6-value-step-8) +
+      var(--cell-8-value-step-8) +
+      var(--cell-9-value-step-8) +
+      var(--cell-10-value-step-8) +
+      var(--cell-4-value-step-8) +
+      var(--cell-2-value-step-8) +
+      var(--cell-1-value-step-8) +
+      var(--cell-0-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-9: max(
+    var(--cell-5-alive-neighbors-step-9) +
+      var(--cell-5-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-9: max(
+    4 - var(--cell-5-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-9) *
+        var(--more-then-3-cell-5-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-9: calc(
+    var(--cell-7-value-step-8) +
+      var(--cell-9-value-step-8) +
+      var(--cell-10-value-step-8) +
+      var(--cell-11-value-step-8) +
+      var(--cell-5-value-step-8) +
+      var(--cell-3-value-step-8) +
+      var(--cell-2-value-step-8) +
+      var(--cell-1-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-9: max(
+    var(--cell-6-alive-neighbors-step-9) +
+      var(--cell-6-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-9: max(
+    4 - var(--cell-6-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-9) *
+        var(--more-then-3-cell-6-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-9: calc(
+    var(--cell-8-value-step-8) +
+      var(--cell-10-value-step-8) +
+      var(--cell-11-value-step-8) +
+      var(--cell-12-value-step-8) +
+      var(--cell-6-value-step-8) +
+      var(--cell-4-value-step-8) +
+      var(--cell-3-value-step-8) +
+      var(--cell-2-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-9: max(
+    var(--cell-7-alive-neighbors-step-9) +
+      var(--cell-7-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-9: max(
+    4 - var(--cell-7-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-9) *
+        var(--more-then-3-cell-7-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-9: calc(
+    var(--cell-9-value-step-8) +
+      var(--cell-11-value-step-8) +
+      var(--cell-12-value-step-8) +
+      var(--cell-13-value-step-8) +
+      var(--cell-7-value-step-8) +
+      var(--cell-5-value-step-8) +
+      var(--cell-4-value-step-8) +
+      var(--cell-3-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-9: max(
+    var(--cell-8-alive-neighbors-step-9) +
+      var(--cell-8-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-9: max(
+    4 - var(--cell-8-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-9) *
+        var(--more-then-3-cell-8-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-9: calc(
+    var(--cell-10-value-step-8) +
+      var(--cell-12-value-step-8) +
+      var(--cell-13-value-step-8) +
+      var(--cell-14-value-step-8) +
+      var(--cell-8-value-step-8) +
+      var(--cell-6-value-step-8) +
+      var(--cell-5-value-step-8) +
+      var(--cell-4-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-9: max(
+    var(--cell-9-alive-neighbors-step-9) +
+      var(--cell-9-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-9: max(
+    4 - var(--cell-9-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-9) *
+        var(--more-then-3-cell-9-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-9: calc(
+    var(--cell-11-value-step-8) +
+      var(--cell-13-value-step-8) +
+      var(--cell-14-value-step-8) +
+      var(--cell-15-value-step-8) +
+      var(--cell-9-value-step-8) +
+      var(--cell-7-value-step-8) +
+      var(--cell-6-value-step-8) +
+      var(--cell-5-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-9: max(
+    var(--cell-10-alive-neighbors-step-9) +
+      var(--cell-10-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-9: max(
+    4 - var(--cell-10-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-9) *
+        var(--more-then-3-cell-10-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-9: calc(
+    var(--cell-12-value-step-8) +
+      var(--cell-14-value-step-8) +
+      var(--cell-15-value-step-8) +
+      var(--cell-0-value-step-8) +
+      var(--cell-10-value-step-8) +
+      var(--cell-8-value-step-8) +
+      var(--cell-7-value-step-8) +
+      var(--cell-6-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-9: max(
+    var(--cell-11-alive-neighbors-step-9) +
+      var(--cell-11-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-9: max(
+    4 - var(--cell-11-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-9) *
+        var(--more-then-3-cell-11-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-9: calc(
+    var(--cell-13-value-step-8) +
+      var(--cell-15-value-step-8) +
+      var(--cell-0-value-step-8) +
+      var(--cell-1-value-step-8) +
+      var(--cell-11-value-step-8) +
+      var(--cell-9-value-step-8) +
+      var(--cell-8-value-step-8) +
+      var(--cell-7-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-9: max(
+    var(--cell-12-alive-neighbors-step-9) +
+      var(--cell-12-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-9: max(
+    4 - var(--cell-12-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-9) *
+        var(--more-then-3-cell-12-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-9: calc(
+    var(--cell-14-value-step-8) +
+      var(--cell-0-value-step-8) +
+      var(--cell-1-value-step-8) +
+      var(--cell-2-value-step-8) +
+      var(--cell-12-value-step-8) +
+      var(--cell-10-value-step-8) +
+      var(--cell-9-value-step-8) +
+      var(--cell-8-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-9: max(
+    var(--cell-13-alive-neighbors-step-9) +
+      var(--cell-13-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-9: max(
+    4 - var(--cell-13-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-9) *
+        var(--more-then-3-cell-13-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-9: calc(
+    var(--cell-15-value-step-8) +
+      var(--cell-1-value-step-8) +
+      var(--cell-2-value-step-8) +
+      var(--cell-3-value-step-8) +
+      var(--cell-13-value-step-8) +
+      var(--cell-11-value-step-8) +
+      var(--cell-10-value-step-8) +
+      var(--cell-9-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-9: max(
+    var(--cell-14-alive-neighbors-step-9) +
+      var(--cell-14-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-9: max(
+    4 - var(--cell-14-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-9) *
+        var(--more-then-3-cell-14-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-9: calc(
+    var(--cell-0-value-step-8) +
+      var(--cell-2-value-step-8) +
+      var(--cell-3-value-step-8) +
+      var(--cell-4-value-step-8) +
+      var(--cell-14-value-step-8) +
+      var(--cell-12-value-step-8) +
+      var(--cell-11-value-step-8) +
+      var(--cell-10-value-step-8)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-9: max(
+    var(--cell-15-alive-neighbors-step-9) +
+      var(--cell-15-value-step-8) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-9: max(
+    4 - var(--cell-15-alive-neighbors-step-9),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-9: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-9) *
+        var(--more-then-3-cell-15-step-9)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-0-alive-neighbors-step-10: calc(
+    var(--cell-1-value-step-9) +
+      var(--cell-3-value-step-9) +
+      var(--cell-4-value-step-9) +
+      var(--cell-5-value-step-9) +
+      var(--cell-15-value-step-9) +
+      var(--cell-13-value-step-9) +
+      var(--cell-12-value-step-9) +
+      var(--cell-11-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-0-step-10: max(
+    var(--cell-0-alive-neighbors-step-10) +
+      var(--cell-0-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-0-step-10: max(
+    4 - var(--cell-0-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-0-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-0-step-10) *
+        var(--more-then-3-cell-0-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-1-alive-neighbors-step-10: calc(
+    var(--cell-2-value-step-9) +
+      var(--cell-4-value-step-9) +
+      var(--cell-5-value-step-9) +
+      var(--cell-6-value-step-9) +
+      var(--cell-0-value-step-9) +
+      var(--cell-14-value-step-9) +
+      var(--cell-13-value-step-9) +
+      var(--cell-12-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-1-step-10: max(
+    var(--cell-1-alive-neighbors-step-10) +
+      var(--cell-1-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-1-step-10: max(
+    4 - var(--cell-1-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-1-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-1-step-10) *
+        var(--more-then-3-cell-1-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-2-alive-neighbors-step-10: calc(
+    var(--cell-3-value-step-9) +
+      var(--cell-5-value-step-9) +
+      var(--cell-6-value-step-9) +
+      var(--cell-7-value-step-9) +
+      var(--cell-1-value-step-9) +
+      var(--cell-15-value-step-9) +
+      var(--cell-14-value-step-9) +
+      var(--cell-13-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-2-step-10: max(
+    var(--cell-2-alive-neighbors-step-10) +
+      var(--cell-2-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-2-step-10: max(
+    4 - var(--cell-2-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-2-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-2-step-10) *
+        var(--more-then-3-cell-2-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-3-alive-neighbors-step-10: calc(
+    var(--cell-4-value-step-9) +
+      var(--cell-6-value-step-9) +
+      var(--cell-7-value-step-9) +
+      var(--cell-8-value-step-9) +
+      var(--cell-2-value-step-9) +
+      var(--cell-0-value-step-9) +
+      var(--cell-15-value-step-9) +
+      var(--cell-14-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-3-step-10: max(
+    var(--cell-3-alive-neighbors-step-10) +
+      var(--cell-3-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-3-step-10: max(
+    4 - var(--cell-3-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-3-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-3-step-10) *
+        var(--more-then-3-cell-3-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-4-alive-neighbors-step-10: calc(
+    var(--cell-5-value-step-9) +
+      var(--cell-7-value-step-9) +
+      var(--cell-8-value-step-9) +
+      var(--cell-9-value-step-9) +
+      var(--cell-3-value-step-9) +
+      var(--cell-1-value-step-9) +
+      var(--cell-0-value-step-9) +
+      var(--cell-15-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-4-step-10: max(
+    var(--cell-4-alive-neighbors-step-10) +
+      var(--cell-4-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-4-step-10: max(
+    4 - var(--cell-4-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-4-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-4-step-10) *
+        var(--more-then-3-cell-4-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-5-alive-neighbors-step-10: calc(
+    var(--cell-6-value-step-9) +
+      var(--cell-8-value-step-9) +
+      var(--cell-9-value-step-9) +
+      var(--cell-10-value-step-9) +
+      var(--cell-4-value-step-9) +
+      var(--cell-2-value-step-9) +
+      var(--cell-1-value-step-9) +
+      var(--cell-0-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-5-step-10: max(
+    var(--cell-5-alive-neighbors-step-10) +
+      var(--cell-5-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-5-step-10: max(
+    4 - var(--cell-5-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-5-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-5-step-10) *
+        var(--more-then-3-cell-5-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-6-alive-neighbors-step-10: calc(
+    var(--cell-7-value-step-9) +
+      var(--cell-9-value-step-9) +
+      var(--cell-10-value-step-9) +
+      var(--cell-11-value-step-9) +
+      var(--cell-5-value-step-9) +
+      var(--cell-3-value-step-9) +
+      var(--cell-2-value-step-9) +
+      var(--cell-1-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-6-step-10: max(
+    var(--cell-6-alive-neighbors-step-10) +
+      var(--cell-6-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-6-step-10: max(
+    4 - var(--cell-6-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-6-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-6-step-10) *
+        var(--more-then-3-cell-6-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-7-alive-neighbors-step-10: calc(
+    var(--cell-8-value-step-9) +
+      var(--cell-10-value-step-9) +
+      var(--cell-11-value-step-9) +
+      var(--cell-12-value-step-9) +
+      var(--cell-6-value-step-9) +
+      var(--cell-4-value-step-9) +
+      var(--cell-3-value-step-9) +
+      var(--cell-2-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-7-step-10: max(
+    var(--cell-7-alive-neighbors-step-10) +
+      var(--cell-7-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-7-step-10: max(
+    4 - var(--cell-7-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-7-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-7-step-10) *
+        var(--more-then-3-cell-7-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-8-alive-neighbors-step-10: calc(
+    var(--cell-9-value-step-9) +
+      var(--cell-11-value-step-9) +
+      var(--cell-12-value-step-9) +
+      var(--cell-13-value-step-9) +
+      var(--cell-7-value-step-9) +
+      var(--cell-5-value-step-9) +
+      var(--cell-4-value-step-9) +
+      var(--cell-3-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-8-step-10: max(
+    var(--cell-8-alive-neighbors-step-10) +
+      var(--cell-8-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-8-step-10: max(
+    4 - var(--cell-8-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-8-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-8-step-10) *
+        var(--more-then-3-cell-8-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-9-alive-neighbors-step-10: calc(
+    var(--cell-10-value-step-9) +
+      var(--cell-12-value-step-9) +
+      var(--cell-13-value-step-9) +
+      var(--cell-14-value-step-9) +
+      var(--cell-8-value-step-9) +
+      var(--cell-6-value-step-9) +
+      var(--cell-5-value-step-9) +
+      var(--cell-4-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-9-step-10: max(
+    var(--cell-9-alive-neighbors-step-10) +
+      var(--cell-9-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-9-step-10: max(
+    4 - var(--cell-9-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-9-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-9-step-10) *
+        var(--more-then-3-cell-9-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-10-alive-neighbors-step-10: calc(
+    var(--cell-11-value-step-9) +
+      var(--cell-13-value-step-9) +
+      var(--cell-14-value-step-9) +
+      var(--cell-15-value-step-9) +
+      var(--cell-9-value-step-9) +
+      var(--cell-7-value-step-9) +
+      var(--cell-6-value-step-9) +
+      var(--cell-5-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-10-step-10: max(
+    var(--cell-10-alive-neighbors-step-10) +
+      var(--cell-10-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-10-step-10: max(
+    4 - var(--cell-10-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-10-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-10-step-10) *
+        var(--more-then-3-cell-10-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-11-alive-neighbors-step-10: calc(
+    var(--cell-12-value-step-9) +
+      var(--cell-14-value-step-9) +
+      var(--cell-15-value-step-9) +
+      var(--cell-0-value-step-9) +
+      var(--cell-10-value-step-9) +
+      var(--cell-8-value-step-9) +
+      var(--cell-7-value-step-9) +
+      var(--cell-6-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-11-step-10: max(
+    var(--cell-11-alive-neighbors-step-10) +
+      var(--cell-11-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-11-step-10: max(
+    4 - var(--cell-11-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-11-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-11-step-10) *
+        var(--more-then-3-cell-11-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-12-alive-neighbors-step-10: calc(
+    var(--cell-13-value-step-9) +
+      var(--cell-15-value-step-9) +
+      var(--cell-0-value-step-9) +
+      var(--cell-1-value-step-9) +
+      var(--cell-11-value-step-9) +
+      var(--cell-9-value-step-9) +
+      var(--cell-8-value-step-9) +
+      var(--cell-7-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-12-step-10: max(
+    var(--cell-12-alive-neighbors-step-10) +
+      var(--cell-12-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-12-step-10: max(
+    4 - var(--cell-12-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-12-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-12-step-10) *
+        var(--more-then-3-cell-12-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-13-alive-neighbors-step-10: calc(
+    var(--cell-14-value-step-9) +
+      var(--cell-0-value-step-9) +
+      var(--cell-1-value-step-9) +
+      var(--cell-2-value-step-9) +
+      var(--cell-12-value-step-9) +
+      var(--cell-10-value-step-9) +
+      var(--cell-9-value-step-9) +
+      var(--cell-8-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-13-step-10: max(
+    var(--cell-13-alive-neighbors-step-10) +
+      var(--cell-13-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-13-step-10: max(
+    4 - var(--cell-13-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-13-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-13-step-10) *
+        var(--more-then-3-cell-13-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-14-alive-neighbors-step-10: calc(
+    var(--cell-15-value-step-9) +
+      var(--cell-1-value-step-9) +
+      var(--cell-2-value-step-9) +
+      var(--cell-3-value-step-9) +
+      var(--cell-13-value-step-9) +
+      var(--cell-11-value-step-9) +
+      var(--cell-10-value-step-9) +
+      var(--cell-9-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-14-step-10: max(
+    var(--cell-14-alive-neighbors-step-10) +
+      var(--cell-14-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-14-step-10: max(
+    4 - var(--cell-14-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-14-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-14-step-10) *
+        var(--more-then-3-cell-14-step-10)
+    ),
+    1
+  );
+  /* calc alive neighbors of cell */
+  --cell-15-alive-neighbors-step-10: calc(
+    var(--cell-0-value-step-9) +
+      var(--cell-2-value-step-9) +
+      var(--cell-3-value-step-9) +
+      var(--cell-4-value-step-9) +
+      var(--cell-14-value-step-9) +
+      var(--cell-12-value-step-9) +
+      var(--cell-11-value-step-9) +
+      var(--cell-10-value-step-9)
+  );
+  /* game logic */
+  --fewer-then-2-cell-15-step-10: max(
+    var(--cell-15-alive-neighbors-step-10) +
+      var(--cell-15-value-step-9) -
+      2,
+    0
+  );
+  --more-then-3-cell-15-step-10: max(
+    4 - var(--cell-15-alive-neighbors-step-10),
+    0
+  );
+  /* calc final value */
+  --cell-15-value-step-10: min(
+    calc(
+      var(--fewer-then-2-cell-15-step-10) *
+        var(--more-then-3-cell-15-step-10)
+    ),
+    1
+  );
 }
 
-@keyframes cell-1 {
-  
-  0%{
-    filter: contrast(var(--cell-1-value));
+@keyframes cell-0 {
+  0% {
+    filter: contrast(var(--cell-0-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-0-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-0-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-0-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-0-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-0-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-0-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-0-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-0-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-0-value-step-9));
   }
   100% {
-    filter: contrast(var(--cell-1-value-step-1));
+    filter: contrast(var(--cell-0-value-step-10));
   }
 }
-
+@keyframes cell-1 {
+  0% {
+    filter: contrast(var(--cell-1-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-1-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-1-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-1-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-1-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-1-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-1-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-1-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-1-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-1-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-1-value-step-10));
+  }
+}
+@keyframes cell-2 {
+  0% {
+    filter: contrast(var(--cell-2-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-2-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-2-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-2-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-2-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-2-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-2-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-2-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-2-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-2-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-2-value-step-10));
+  }
+}
+@keyframes cell-3 {
+  0% {
+    filter: contrast(var(--cell-3-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-3-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-3-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-3-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-3-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-3-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-3-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-3-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-3-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-3-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-3-value-step-10));
+  }
+}
+@keyframes cell-4 {
+  0% {
+    filter: contrast(var(--cell-4-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-4-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-4-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-4-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-4-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-4-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-4-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-4-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-4-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-4-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-4-value-step-10));
+  }
+}
+@keyframes cell-5 {
+  0% {
+    filter: contrast(var(--cell-5-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-5-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-5-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-5-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-5-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-5-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-5-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-5-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-5-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-5-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-5-value-step-10));
+  }
+}
+@keyframes cell-6 {
+  0% {
+    filter: contrast(var(--cell-6-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-6-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-6-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-6-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-6-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-6-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-6-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-6-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-6-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-6-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-6-value-step-10));
+  }
+}
+@keyframes cell-7 {
+  0% {
+    filter: contrast(var(--cell-7-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-7-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-7-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-7-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-7-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-7-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-7-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-7-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-7-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-7-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-7-value-step-10));
+  }
+}
+@keyframes cell-8 {
+  0% {
+    filter: contrast(var(--cell-8-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-8-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-8-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-8-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-8-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-8-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-8-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-8-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-8-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-8-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-8-value-step-10));
+  }
+}
+@keyframes cell-9 {
+  0% {
+    filter: contrast(var(--cell-9-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-9-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-9-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-9-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-9-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-9-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-9-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-9-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-9-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-9-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-9-value-step-10));
+  }
+}
+@keyframes cell-10 {
+  0% {
+    filter: contrast(var(--cell-10-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-10-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-10-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-10-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-10-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-10-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-10-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-10-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-10-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-10-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-10-value-step-10));
+  }
+}
+@keyframes cell-11 {
+  0% {
+    filter: contrast(var(--cell-11-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-11-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-11-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-11-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-11-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-11-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-11-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-11-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-11-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-11-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-11-value-step-10));
+  }
+}
+@keyframes cell-12 {
+  0% {
+    filter: contrast(var(--cell-12-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-12-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-12-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-12-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-12-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-12-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-12-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-12-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-12-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-12-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-12-value-step-10));
+  }
+}
+@keyframes cell-13 {
+  0% {
+    filter: contrast(var(--cell-13-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-13-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-13-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-13-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-13-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-13-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-13-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-13-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-13-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-13-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-13-value-step-10));
+  }
+}
+@keyframes cell-14 {
+  0% {
+    filter: contrast(var(--cell-14-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-14-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-14-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-14-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-14-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-14-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-14-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-14-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-14-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-14-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-14-value-step-10));
+  }
+}
+@keyframes cell-15 {
+  0% {
+    filter: contrast(var(--cell-15-value-step-0));
+  }
+  10% {
+    filter: contrast(var(--cell-15-value-step-1));
+  }
+  20% {
+    filter: contrast(var(--cell-15-value-step-2));
+  }
+  30% {
+    filter: contrast(var(--cell-15-value-step-3));
+  }
+  40% {
+    filter: contrast(var(--cell-15-value-step-4));
+  }
+  50% {
+    filter: contrast(var(--cell-15-value-step-5));
+  }
+  60% {
+    filter: contrast(var(--cell-15-value-step-6));
+  }
+  70% {
+    filter: contrast(var(--cell-15-value-step-7));
+  }
+  80% {
+    filter: contrast(var(--cell-15-value-step-8));
+  }
+  90% {
+    filter: contrast(var(--cell-15-value-step-9));
+  }
+  100% {
+    filter: contrast(var(--cell-15-value-step-10));
+  }
+}
 .cell:nth-child(1) {
-  animation: cell-1 2s forwards;
+  animation: cell-0 10s forwards;
 }
 
+.cell:nth-child(2) {
+  animation: cell-1 10s forwards;
+}
+
+.cell:nth-child(3) {
+  animation: cell-2 10s forwards;
+}
+
+.cell:nth-child(4) {
+  animation: cell-3 10s forwards;
+}
+
+.cell:nth-child(5) {
+  animation: cell-4 10s forwards;
+}
+
+.cell:nth-child(6) {
+  animation: cell-5 10s forwards;
+}
+
+.cell:nth-child(7) {
+  animation: cell-6 10s forwards;
+}
+
+.cell:nth-child(8) {
+  animation: cell-7 10s forwards;
+}
+
+.cell:nth-child(9) {
+  animation: cell-8 10s forwards;
+}
+
+.cell:nth-child(10) {
+  animation: cell-9 10s forwards;
+}
+
+.cell:nth-child(11) {
+  animation: cell-10 10s forwards;
+}
+
+.cell:nth-child(12) {
+  animation: cell-11 10s forwards;
+}
+
+.cell:nth-child(13) {
+  animation: cell-12 10s forwards;
+}
+
+.cell:nth-child(14) {
+  animation: cell-13 10s forwards;
+}
+
+.cell:nth-child(15) {
+  animation: cell-14 10s forwards;
+}
+
+.cell:nth-child(16) {
+  animation: cell-15 10s forwards;
+}
 
 .container {
   display: flex;
@@ -51,7 +5450,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto auto;
   gap: 0.3rem;
 }
 
@@ -60,3 +5459,5 @@
   height: 4rem;
   background-color: blue;
 }
+
+/*# sourceMappingURL=styles.css.map */
