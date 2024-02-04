@@ -1,0 +1,62 @@
+:root {
+  --cell-1-value: 0;
+  --cell-2-value: 0;
+  --cell-3-value: 1;
+  --cell-4-value: 0;
+
+  /* calc alive neighbors of cell*/
+  --cell-1-alive-neighbors: calc(var(--cell-2-value) + var(--cell-3-value));
+  --cell-1-alive-neighbors: 3;
+
+  /* any live cell with fewer then 2 neighbors dies (get 0), otherwise we get some positive number*/
+  /* --fewer-then-2: max(var(--cell-1-alive-neighbors) - 1, 0); */
+  /*
+  PROBLEM: returns 1 if 2 neighbors alive in  dead cell -> turns alive
+  SOLUTION: add
+  */
+  --fewer-then-2: max(
+    var(--cell-1-alive-neighbors) + var(--cell-1-value) - 2,
+    0
+  );
+  /* multiply with fewer then 2 at end */
+
+  /* Any cell with more than three neighbors dies (get 0), otherwise we get some positive number */
+  --more-then-3: max(4 - var(--cell-1-alive-neighbors), 0);
+  /* multiply with more then 3 at end */
+
+
+  /* calc final value cell 1 (is always 1 or 0) after first step*/
+  --cell-1-value-step-1: calc(min(var(--fewer-then-2) * var(--more-then-3), 1));
+}
+
+@keyframes cell-1 {
+  
+  0%{
+    filter: contrast(var(--cell-1-value));
+  }
+  100% {
+    filter: contrast(var(--cell-1-value-step-1));
+  }
+}
+
+.cell:nth-child(1) {
+  animation: cell-1 2s forwards;
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.3rem;
+}
+
+.cell {
+  width: 4rem;
+  height: 4rem;
+  background-color: blue;
+}
