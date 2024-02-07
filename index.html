@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="container">
@@ -25,7 +25,34 @@
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
       </div>
     </div>
   </body>
 </html>
+<script>
+  var style = getComputedStyle(document.body);
+  console.log("step 1: ", style.getPropertyValue("--cell-0-value-step-1"));
+  console.log("step 2: ", style.getPropertyValue("--cell-0-value-step-2"));
+  console.log("step 3: ", style.getPropertyValue("--cell-0-value-step-3"));
+  console.log("step 4: ", style.getPropertyValue("--cell-0-value-step-4"));
+</script>
